@@ -1,0 +1,20 @@
+version: 1
+levels:
+  DEBUG: 10
+  INFO: 20
+  WARNING: 30
+  ERROR: 40
+  AUDIT: 45
+loggers:
+  app:
+    level: INFO
+    handlers: [file]
+  audit:
+    level: AUDIT
+    handlers: [audit_file]
+filters: []
+handlers:
+  file:
+    path: logs/app.log
+  audit_file:
+    path: logs/audit.log

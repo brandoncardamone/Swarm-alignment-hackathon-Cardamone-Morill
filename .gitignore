@@ -1,0 +1,11 @@
+.env
+.venv/
+logs/
+data/runs/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+sandbox/**/out/
+cache/

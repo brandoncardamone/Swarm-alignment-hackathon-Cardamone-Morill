@@ -1,0 +1,2 @@
+- `benign/`: benign look-alike templates.
+- `attacks/ATTACK_TEMPLATES_proxy_goals.py`: scripted split-attack templates (proxy goals, fake data, mock no-network sandbox).

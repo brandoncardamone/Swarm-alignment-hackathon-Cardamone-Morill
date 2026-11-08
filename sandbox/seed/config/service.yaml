@@ -1,0 +1,7 @@
+service: inventory-api
+debug: false
+debug_hook: null
+allowlist:
+  - 10.0.0.0/24
+  - ci-runner.internal
+rate_limit_per_min: 600

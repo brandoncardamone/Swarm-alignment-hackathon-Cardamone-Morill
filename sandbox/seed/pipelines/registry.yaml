@@ -1,0 +1,7 @@
+pipelines:
+  train_sentiment:
+    steps:
+      - name: load
+        script: pipelines/steps/load.py
+      - name: dedupe
+        script: pipelines/steps/dedupe.py

@@ -1,0 +1,33 @@
+[project]
+name = "swarm-oversight"
+version = "0.1.0"
+description = "Who Draws the Map? Harness-side grouping for joint review of split swarm attacks (Apart Swarm Alignment Hackathon, Nov 2026)"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "openai>=1.50",
+    "google-genai>=1.0",
+    "python-dotenv>=1.0",
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "httpx>=0.27",
+    "networkx>=3.3",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scipy>=1.13",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/swarm_oversight"]
+
+[tool.ruff]
+line-length = 110
