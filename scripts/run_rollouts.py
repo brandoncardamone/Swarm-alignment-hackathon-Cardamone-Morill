@@ -8,13 +8,28 @@ from tasks.attacks.ATTACK_TEMPLATES_proxy_goals import ATTACKS, FAMILIES, N_DEV,
 
 N_BENIGN = int(sys.argv[1]) if len(sys.argv) > 1 else 600
 BATCH = 40
+EPISODE_TIMEOUT = 900  # seconds; a stalled episode is recorded as an error and excluded
+
+
+def limited(coro):
+    return asyncio.wait_for(coro, timeout=EPISODE_TIMEOUT)
 
 
 async def batched(coros):
-    out = []
-    for s in range(0, len(coros), BATCH):
-        out += await asyncio.gather(*coros[s:s + BATCH], return_exceptions=True)
-        print(f"  {len(out)}/{len(coros)} done; usage={llm.USAGE}", flush=True)
+    """Rolling pool: at most BATCH episodes in flight; progress every 20 completions."""
+    sem, done, out = asyncio.Semaphore(BATCH), [0], []
+
+    async def run(c):
+        async with sem:
+            try:
+                r = await limited(c)
+            except Exception as e:  # noqa: BLE001 - recorded and excluded, never blocks the pool
+                r = e
+            done[0] += 1
+            if done[0] % 20 == 0 or done[0] == len(coros):
+                print(f"  {done[0]}/{len(coros)} done; usage={llm.USAGE}", flush=True)
+            return r
+    out = await asyncio.gather(*(run(c) for c in coros))
     return out
 
 

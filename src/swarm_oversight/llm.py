@@ -56,7 +56,7 @@ def split(model: str) -> tuple[str, str]:
 def client(provider: str) -> AsyncOpenAI:
     if provider not in _clients:
         base, _ = PROVIDERS[provider]
-        _clients[provider] = AsyncOpenAI(base_url=base, api_key=api_key(provider), max_retries=5, timeout=120)
+        _clients[provider] = AsyncOpenAI(base_url=base, api_key=api_key(provider), max_retries=1, timeout=60)
     return _clients[provider]
 
 
@@ -76,12 +76,13 @@ async def chat(model: str, messages: list[dict], *, cache_tag: str = "", **param
         return hit
     provider, mid = split(model)
     async with _sem(provider):
-        for attempt in range(6):
+        for attempt in range(4):
             try:
-                r = await client(provider).chat.completions.create(model=mid, messages=messages, **params)
+                r = await asyncio.wait_for(
+                    client(provider).chat.completions.create(model=mid, messages=messages, **params), timeout=150)
                 break
-            except RETRYABLE:
-                if attempt == 5:
+            except (TimeoutError, *RETRYABLE):
+                if attempt == 3:
                     raise
                 await asyncio.sleep(min(60, 2 ** attempt + 0.5))
     ch = r.choices[0]
