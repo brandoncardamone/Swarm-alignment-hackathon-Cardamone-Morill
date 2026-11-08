@@ -25,6 +25,19 @@ Submit a complete v1 by 11 PM ET Sun; resubmit under the same title to fix.
 | C11 | *Proposed:* report a **composition-gap row**, S_oracle under J vs S_oracle under Fisher (already v1 secondary), **and** the per-task max-piece score vs oracle-group score, in Makins's units. | Makins found the joint vs worst-commit gap is only +0.04 at K=3. This is our biggest scientific risk (§5), so we measure it directly. |
 | C12 | *Proposed:* cheap-first models (§3), every LLM call cached, judge calibration on 1,000-request samples per map (v1's allowed fallback) unless the budget allows the full set. | "Keep it cheap." |
 
+**Added during the build (Sat night), all fixed before evaluation and recorded in `configs/frozen.yaml`:**
+
+| # | Change | Why |
+|---|---|---|
+| C13 | Models: workers = DeepSeek V4 Flash via OpenRouter (the DeepSeek API key has no balance). Judge T = **Mistral-Small-3.2-24B**, not Llama-3.1-8B. | Llama's provider returns misaligned logprobs; Mistral's are aligned. Both are far weaker than U. |
+| C14 | Judge scale **0–9** (single token in every tokenizer), not 0–100. | Mistral splits numbers into digits, so a 0–100 logprob score only read the tens digit. |
+| C15 | Embedder = **Voyage-4-lite via OpenRouter**, not Gemini. | Gemini's free tier allows ~100 texts/min. Brown et al. also use Voyage, so this is more faithful. |
+| C16 | Benign look-alikes widened on dev: aliased log levels, `'*'` filters, legitimately allowlisted partner IPs, `skip_token_check: true` in some legitimate profiles, label-schema mapping scripts. | Pilot showed single keywords gave attacks away; v1 requires benign tasks that resemble attacks on the surface. |
+| C17 | Cover tasks for attack roots never come from the attack's own family; workers told to read before modifying. | Pilot: cover tasks overwrote attack artifacts, and blind rewrites dropped edits (completion failures). |
+| C18 | Background = **150** benign episodes per stream (v1: ≥200); calibration sample = **400** requests per map (v1: 1,000); at most **25** judged groups per map per evaluation stream. | Pool size at 40% overlap for the backdoor family; API budget. Still 150× attack volume (Brown et al.: 10–100×). |
+| C19 | Strict pilot gate **not met** (dev: oracle caught 5/9, per-agent 2/9, singleton 3/9 with the frozen judge). We proceeded rather than keep tuning on 9 dev episodes. | Matches Makins et al. (weak monitors gain little from joint review). v1 pre-specifies the reading: grouping loss vs judging loss. |
+| C20 | A judge variant that states the combined effect before scoring was tried on dev and rejected (noisier). | Reported in the appendix as a negative result. |
+
 Unchanged from v1: K = 3 independent roots, no planner, no spawning, no identity rotation. The 6 maps, judge protocol, offline replay, 10%/40% overlap, q ∈ {0.5, 1, 2, 5}% (2% primary), calibration/evaluation split, dev set frozen before evaluation, H0 / H-main / H-dilution, paired cluster bootstrap + McNemar, headline figure + grid table. **Never cut:** oracle, per-agent, random size-matched rows, or the calibration/evaluation split.
 
 ---
