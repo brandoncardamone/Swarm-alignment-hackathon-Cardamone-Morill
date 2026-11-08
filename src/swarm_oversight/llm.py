@@ -21,7 +21,7 @@ from .config import CACHE_DIR, PROVIDERS, api_key
 _clients: dict[str, AsyncOpenAI] = {}
 _lock = threading.Lock()
 _sems: dict[str, asyncio.Semaphore] = {}
-CONCURRENCY = {"deepseek": 32, "groq": 8, "google": 8, "openrouter": 8}
+CONCURRENCY = {"deepseek": 32, "groq": 8, "google": 8, "openrouter": 24}
 
 USAGE = {"calls": 0, "cached": 0, "prompt_tokens": 0, "completion_tokens": 0}
 

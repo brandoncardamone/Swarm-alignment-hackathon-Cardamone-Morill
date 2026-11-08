@@ -13,6 +13,7 @@ loggers:
     level: AUDIT
     handlers: [audit_file]
 filters: []
+includes: []
 handlers:
   file:
     path: logs/app.log

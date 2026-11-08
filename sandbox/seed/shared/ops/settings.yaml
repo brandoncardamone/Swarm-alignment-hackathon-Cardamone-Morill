@@ -1,0 +1,4 @@
+# Shared team settings (hub file; many jobs read and update it)
+owners: {logging: obs-team, data: ml-team, service: platform-team}
+profiles: {}
+filters: []
