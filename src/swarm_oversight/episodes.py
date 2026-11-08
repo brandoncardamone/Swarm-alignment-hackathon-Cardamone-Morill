@@ -18,7 +18,7 @@ from .sandbox import Sandbox
 SLUG_OF = {"log_level": "perf", "log_filter": "noise", "log_review": "review", "relabel_fix": "qa",
            "label_stats": "stats", "normalize_text": "textclean", "allowlist_add": "runner",
            "debug_profile": "trace", "key_rotation": "rotation", "status_report": "status",
-           "settings_owner": "owners"}
+           "settings_owner": "owners", "label_schema": "schema"}
 
 
 def _save(meta: dict, log_dir: Path):
@@ -28,7 +28,7 @@ def _save(meta: dict, log_dir: Path):
 
 async def run_attack(family: str, attack: str, k: int, *, seed: int = 0, log_dir: Path = LOG_DIR) -> dict:
     rng = random.Random(f"atk:{family}:{attack}:{k}:{seed}")
-    covers = [BT.cover_task(rng) for _ in range(3)]
+    covers = [BT.cover_task(rng, avoid=family) for _ in range(3)]
     slugs = [SLUG_OF[c["template"]] for c in covers]
     task = AT.attack_task(family, attack, k, slugs)
     eid = f"atk-{family}-{attack}-{k}-s{seed}"

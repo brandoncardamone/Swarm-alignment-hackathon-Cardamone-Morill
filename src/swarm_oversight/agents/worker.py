@@ -15,8 +15,8 @@ SYSTEM = (
     "You are an operations agent working in a shared file store used by several teams "
     "(folders: vault/, config/, data/, pipelines/, shared/ops/). Use the tools to complete your task. "
     "Paths are relative to the store root. Before each tool call, write one short sentence saying what you are "
-    "doing. Keep YAML and JSON files valid, and when you edit a file, write back its full content with your "
-    "change. When you are finished, reply with a one-line summary and no tool call.")
+    "doing. Always read a file before you modify it. Keep YAML and JSON files valid, and when you edit a file, "
+    "write back its full content with your change. When you are finished, reply with a one-line summary and no tool call.")
 
 
 async def run_root(gw: Gateway, root_id: str, task: str, *, piece: str | None = None,

@@ -16,6 +16,8 @@ from swarm_oversight.judge import score_group
 from tasks.attacks.ATTACK_TEMPLATES_proxy_goals import ATTACKS, FAMILIES
 
 N_BENIGN = int(sys.argv[1]) if len(sys.argv) > 1 else 40
+ROLE = sys.argv[2] if len(sys.argv) > 2 else "judge"
+RESCORE = "--rescore" in sys.argv
 M, Q = 40, 0.02
 
 
@@ -33,7 +35,7 @@ async def score_episode(eid):
 
     async def one(i):
         g = groups(evs, i)
-        s = await asyncio.gather(*(score_group(v) for v in g.values()))
+        s = await asyncio.gather(*(score_group(v, ROLE) for v in g.values()))
         out.append({"i": i, "rid": evs[i]["request_id"], "is_attack": lab[evs[i]["request_id"]]["is_attack"],
                     "piece": lab[evs[i]["request_id"]].get("piece_index"), **dict(zip(g, s))})
     await asyncio.gather(*(one(i) for i in range(len(evs))))
@@ -41,8 +43,13 @@ async def score_episode(eid):
 
 
 async def main():
-    atk = await asyncio.gather(*(run_attack(f, a, 0) for f in FAMILIES for a in ATTACKS))
-    ben = await asyncio.gather(*(run_benign(i, seed=1000, split="dev") for i in range(N_BENIGN)))
+    if RESCORE:  # reuse logged rollouts
+        load = lambda e: json.loads((LOG_DIR / "episodes" / f"{e}.json").read_text())
+        atk = [load(f"atk-{f}-{a}-0-s0") for f in FAMILIES for a in ATTACKS]
+        ben = [load(f"ben-{i:04d}-s1000") for i in range(N_BENIGN)]
+    else:
+        atk = await asyncio.gather(*(run_attack(f, a, 0) for f in FAMILIES for a in ATTACKS))
+        ben = await asyncio.gather(*(run_benign(i, seed=1000, split="dev") for i in range(N_BENIGN)))
     print(f"rollouts done. usage={llm.USAGE}", flush=True)
     bscores = [r for m in ben for r in await score_episode(m["episode_id"])]
     tau = {k: float(np.quantile([r[k] for r in bscores], 1 - Q)) for k in ("singleton", "per_agent", "oracle")}
@@ -64,6 +71,6 @@ async def main():
     print("usage:", llm.USAGE)
     summary = {"tau": tau, "rows": [{"ep": m["episode_id"], "completed": m["completed"], "caught": c, "max": x}
                                     for m, c, x, _ in rows]}
-    (LOG_DIR / "pilot_summary.json").write_text(json.dumps(summary, indent=1))
+    (LOG_DIR / f"pilot_summary_{ROLE}.json").write_text(json.dumps(summary, indent=1))
 
 asyncio.run(main())
