@@ -57,6 +57,12 @@ def main():
     plt.rcParams.update({"font.size": 9, "axes.spines.top": False, "axes.spines.right": False})
     fig, axes = plt.subplots(1, len(ovs), figsize=(3.6 * len(ovs), 3.1), sharey=True)
     for ax, o in zip(np.atleast_1d(axes), ovs):
+        # end-of-line labels, pushed apart so they never collide
+        ends = sorted(((T[(m, o, QS[-1])]["S_worst"], m) for m in maps), key=lambda x: x[0])
+        lab_y, last = {}, -1.0
+        for y_end, m in ends:
+            lab_y[m] = max(y_end, last + 0.055)
+            last = lab_y[m]
         for m in maps:
             col, mk, ls = STYLE[m]
             y = [T[(m, o, q)]["S_worst"] for q in QS]
@@ -66,8 +72,8 @@ def main():
             ax.plot([100 * q for q in QS], y, color=col, marker=mk, ms=5, lw=lw, ls=ls, label=LABEL[m])
             if m in ("provenance", "clustering"):
                 ax.fill_between([100 * q for q in QS], lo, hi, color=col, alpha=0.12, lw=0)
-            ax.annotate(LABEL[m].split(" (")[0], (100 * QS[-1], y[-1]), xytext=(4, 0), textcoords="offset points",
-                        fontsize=7, color="#52514e", va="center")
+            ax.annotate(LABEL[m].split(" (")[0], (100 * QS[-1] * 1.08, lab_y[m]), fontsize=7, color="#52514e",
+                        va="center", annotation_clip=False)
         ax.set_xscale("log")
         ax.set_xticks([100 * q for q in QS], [f"{100 * q:g}%" for q in QS])
         ax.set_title(f"{int(100 * o)}% benign overlap", fontsize=9)

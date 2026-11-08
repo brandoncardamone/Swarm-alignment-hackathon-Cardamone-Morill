@@ -3,6 +3,7 @@
 Frozen parameters live in configs/frozen.yaml (committed before evaluation = pre-registration)."""
 import asyncio
 import json
+import os
 
 import yaml
 
@@ -13,7 +14,7 @@ from swarm_oversight.streams import draw_backgrounds, load_meta, merge
 from tasks.attacks.ATTACK_TEMPLATES_proxy_goals import FAMILIES
 
 P = yaml.safe_load((ROOT / "configs" / "frozen.yaml").read_text())
-OUT = LOG_DIR / "results"
+OUT = LOG_DIR / os.environ.get("RESULTS_DIR", "results")
 
 
 async def main():
