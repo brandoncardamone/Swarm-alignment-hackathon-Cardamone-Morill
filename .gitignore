@@ -9,3 +9,7 @@ __pycache__/
 .ruff_cache/
 sandbox/**/out/
 cache/
+
+# Report drafts stay local (not pushed)
+report/draft.md
+report/paper_rough.md
