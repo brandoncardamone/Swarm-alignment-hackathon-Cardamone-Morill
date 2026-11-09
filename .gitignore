@@ -13,3 +13,8 @@ cache/
 # Report drafts stay local (not pushed)
 report/draft.md
 report/paper_rough.md
+report/cross_analysis.md
+report/paper_final.md
+report/paper_final.docx
+report/paper_final_long.md
+report/*.docx

@@ -1,8 +1,8 @@
 # Live results tracker
 
-_Last updated: Sun Nov 08, 00:58:06 EST_ · regenerated every 2 min while the experiment runs (`scripts/live_status.py`). Interim numbers are point estimates on finished blocks only; final numbers with CIs come from `scripts/analyze.py` → `logs/results/summary.md`.
+_Last updated: Mon Nov 09, 01:31:20 EST_ · regenerated every 2 min while the experiment runs (`scripts/live_status.py`). Interim numbers are point estimates on finished blocks only; final numbers with CIs come from `scripts/analyze.py` → `logs/results/summary.md`.
 
-**OpenRouter spend:** $4.63 of $20
+**OpenRouter spend:** $8.07 of $20
 
 ## 1. Rollouts
 
