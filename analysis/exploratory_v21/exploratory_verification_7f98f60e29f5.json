@@ -1,0 +1,25 @@
+{
+  "analysis": "exploratory_v21",
+  "primary_complete": true,
+  "raw_count_cells_verified": 90,
+  "case_count": 432,
+  "calibration_rows": 27000,
+  "reference_rows": 27000,
+  "source_and_generated_input_hashes_unchanged": true,
+  "finite_ordered_intervals": true,
+  "actual_figure_visually_inspected": true,
+  "source_hashes": {
+    "exploratory_scores.json": "d5ec5e3122853e2dcddeddbee1c701d26664efef32512357e351c17682ebe1d7",
+    "exploratory_summary.json": "f7a2cc95fd02fff4e87d8f64a6029f34ae6096420030fe615fc17ea44c12bef0",
+    "identifier_evaluation/exploratory_summary.json": "080f3fd6520817a5347ca3b4ee58c56b75b98358ae97dee0945c566f731e896b"
+  },
+  "supplement_complete": true,
+  "identifier_raw_count_cells_verified": 18,
+  "primary_metrics_counts_decisions_identical": true,
+  "identifier_cases": 432,
+  "identifier_calibration_rows": 5400,
+  "identifier_reference_rows": 5400,
+  "account_usage_usd": 8.071439505,
+  "approximate_account_usage_increase_usd": 2.000420246000001,
+  "remaining_credit_usd": 21.928560495
+}

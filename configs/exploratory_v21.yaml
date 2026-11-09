@@ -1,0 +1,26 @@
+# EXPLORATORY post-v2 structural follow-up. Never replaces frozen.yaml or v2 outputs.
+analysis: exploratory_v21
+seed: 20261108
+parent_run: logs/exploratory_v2/602c1b9a2cff
+families: [audit_off, label_poison, config_backdoor]
+tasks_per_family: 16
+fresh_task_offset: 16
+wording: plain
+routes: [private, low, high]
+backgrounds: {dev: 50, calibration: 200, evaluation: 200}
+insertions: 3
+cover_length: 3
+M: 9
+h: 2
+fanout_cap: 8
+primary_q: 0.02
+qs: [0.005, 0.01, 0.02, 0.05, 0.1]
+bootstrap: 2000
+judged_maps: [singleton, per_agent, size_root_matched, provenance, oracle]
+judge_free_maps: [path_mention, fanout_capped]
+policies: [global, size_bin]
+primary_policy: size_bin
+size_bins: [[1, 1], [2, 3], [4, 9]]
+minimum_bin: 50
+runner_image: swarm-runner-v2:0.1
+output: logs/exploratory_v21

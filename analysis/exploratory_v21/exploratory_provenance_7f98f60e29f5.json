@@ -1,0 +1,245 @@
+{
+  "analysis": "exploratory_v21",
+  "recorded_utc": "2026-11-08T17:59:03.307386+00:00",
+  "branch": "exploratory/v21-structural-fixes",
+  "base_head": "8b340629730014eb33f5a03cd8184a281f6a6bc4",
+  "reporting_source_hashes": {
+    "PROJECT.md": "db7f5a7887c40b0341046ccd347d9390b518eaab7b47ce8ed7dd72a823034ad4",
+    "README.md": "576fcdf0d0dc4bc0d4ee51f1da2b675e70108d4081d67deb31df19a5ec1fcdbd",
+    "RESULTS_LIVE.md": "36eb5ae034945e7c49a3fb614fdbacb50d3a50c28f6586915b2125576ed40c60",
+    "pytest.ini": "c809c969ec7e11b9ff37784e9c6fcc0b7c5148d168e18b05aed797e03fbd6ead",
+    "pyproject.toml": "01a797b20d07060eb32d59dd22709783a3fcbfb9ce45c041c796e39a2e71f2dc",
+    "uv.lock": "f47533b717e82df98d9a27e4e0b1ece46a3430736c19b7cbad2c58e69992e821",
+    "docs/V21_IMPLEMENTATION.md": "2e63838318b225329d5e98a88a721ef81eafee4a3d59ed9d424a5fde5c0d0896",
+    "docs/V21_PROTOCOL.md": "128d2b48b56f4fb70f8b41d83d585974905269b178a802e44cdd128c3aff60fa",
+    "docs/V21_IDENTIFIER_ADDENDUM.md": "3d2f73d2fcefcbcfbc73aab45f11a23d6e959555fb64d28ae3dbbc4e4b03e97b",
+    "docs/V21_IDENTIFIER_JUDGED_ADDENDUM.md": "1d667a4843e9e99220cfb164bbb56f3e920b593043dd0bcffa4df655fe64a90e",
+    "configs/exploratory_v21.yaml": "247d5ce2fb143415f52c4cba15809cddfee8d6442a5ab699bec57b3c56a9fd9f",
+    "scripts/exploratory_v21_live.py": "99141ce4eaed45257d68117a31b02bcd2c437f38f8a65807a2fc42e3e241a02e",
+    "scripts/exploratory_v21_identifier_audit.py": "76e016f044d2a20a30492833e679f8472a3cc95c00dc8162946690ce27270e68",
+    "scripts/exploratory_v21.py": "5689770012f2601e1f51818959ff8a53657e546c874b18733d7db5bc5e9e0a93",
+    "scripts/exploratory_v21_identifier_eval.py": "bda09294c3ab01e4176a52389f20d8123da802cbc80868c05e4e1b1813caa908",
+    "scripts/exploratory_v21_report.py": "f737a2dabad1ba019c6b3351c8bad2ff590d18dca3bb98af7bcae5ed2604399f",
+    "scripts/exploratory_v21_transport.py": "a5477ab497f29085e5783ba976c5c90bcece00972eba566e1f0219f52d2e2922",
+    "src/swarm_oversight/exploratory_v21/analysis.py": "4b843e2941bc091ee0721a2cdc1b576b3cb3bfb123ff520c57e7d3c5597e22ab",
+    "src/swarm_oversight/exploratory_v21/design.py": "d43ee3a00cacd5a44bd0ef13a506518d64d862fe70026627b1844c776e4f99c4",
+    "src/swarm_oversight/exploratory_v21/__init__.py": "2ff5cbec41aedf95939ccffc32f2bd14f9204df93ada573d0ffac65ce2a9938a",
+    "src/swarm_oversight/exploratory_v21/judge.py": "729b061995dc5b8b1db4abb7c96ae37dff1acd6bb629a131a261a66e342b14ab",
+    "src/swarm_oversight/exploratory_v21_identifier.py": "c20182ed25eb086f21f39bec6940e45ec5e8c885a96d878a445af81c56e759e6",
+    "tests/test_exploratory_v21_report.py": "d347b70aca1fad0ee0c1480f2613a7fa5bb3b7823c2da75779f9846d12503d15",
+    "tests/test_exploratory_v21_identifier.py": "a2aee1aa3aa00b10af04406e1c661b38ff27443a0e486f4d1d990e546ec0bab9",
+    "tests/test_exploratory_v21_transport.py": "2c41cc71070b6c85cdbd7a76a60dd31893fe214d5653fa52b4e6a822df06e40e",
+    "tests/test_exploratory_v21.py": "4947089e3aa2616bf03df8ed8a3d94d9f3c589d8beb968fcc1bb9ae245aa7d64"
+  },
+  "artifact_hashes": {
+    "report/exploratory_v21.md": "3150f89d2c1f7fc6df5770e1bc8c86d42a7500d11711e3b885815a9f8a9c10fb",
+    "report/figures/exploratory_v21_7f98f60e29f5_safety.png": "1f67fa6c656defe9676bf334513b276cbe127585e64dd440cb3fb1e57cbd8bc9",
+    "report/figures/exploratory_v21_7f98f60e29f5_safety.pdf": "58815cb53b810714a66417aadff7e3c21568f37e50581ca238abf1c708bdb980",
+    "analysis/exploratory_v21/exploratory_identifier_primary_7f98f60e29f5.csv": "46d8db812f43d3fc2fabe05a0c906a57ec3c19e319e58fee0e691e116ee41e8d",
+    "analysis/exploratory_v21/exploratory_interpretation_checks_7f98f60e29f5.json": "89d48179ec608cd5691aeb0268af6ac6af7fcfc24fbac5ae5424fce0894ba0d1",
+    "analysis/exploratory_v21/exploratory_identifier_q_sweep_7f98f60e29f5.csv": "08f5a3cf50ced8744d3a3923f3b13fba35057687d34271d8ee43f99fa1ae31d5",
+    "analysis/exploratory_v21/exploratory_reference_7f98f60e29f5.json": "097442a4cec60f4983a4fffb4e18caf40f2959149685041d2f30699caff41666",
+    "analysis/exploratory_v21/exploratory_final_audit_7f98f60e29f5.json": "1cb9ff927ec9fa66d59e7d95b83850dfefdd0c48a18713d060fbb25bece50a29",
+    "analysis/exploratory_v21/exploratory_first_piece_calibration_7f98f60e29f5.json": "2c5bda53c423d78c1638ae73571f4ac080e0db1e366540f64c0ec66d4353d35a",
+    "analysis/exploratory_v21/exploratory_q_sweep_7f98f60e29f5.csv": "4a43fd8de2110de4aeaa20b1beb84ab1c715c04c063566a63d7cf972845b8513",
+    "analysis/exploratory_v21/exploratory_primary_7f98f60e29f5.csv": "57b7356179d7121b4cd9617fe6e70a69995e7017c2e574c93d29371956a7275f",
+    "analysis/exploratory_v21/exploratory_identifier_summary_7f98f60e29f5.json": "080f3fd6520817a5347ca3b4ee58c56b75b98358ae97dee0945c566f731e896b",
+    "analysis/exploratory_v21/exploratory_summary_7f98f60e29f5.json": "f7a2cc95fd02fff4e87d8f64a6029f34ae6096420030fe615fc17ea44c12bef0",
+    "analysis/exploratory_v21/exploratory_verification_7f98f60e29f5.json": "30ff07c1977241cfce8ef869e39db32e894f20689b3773b8b1c31b8e26c33cb7"
+  },
+  "collection_and_operational_metadata": {
+    "exploratory_source_manifest.json": {
+      "analysis": "exploratory_v21",
+      "files": {
+        "configs/exploratory_v21.yaml": "247d5ce2fb143415f52c4cba15809cddfee8d6442a5ab699bec57b3c56a9fd9f",
+        "configs/models.yaml": "11bd30d51b4cfdb24fae7e42e5c8d722895bd5558b2a2df3d86fcfb5071d3186",
+        "docs/V21_PROTOCOL.md": "128d2b48b56f4fb70f8b41d83d585974905269b178a802e44cdd128c3aff60fa",
+        "pyproject.toml": "01a797b20d07060eb32d59dd22709783a3fcbfb9ce45c041c796e39a2e71f2dc",
+        "pytest.ini": "c809c969ec7e11b9ff37784e9c6fcc0b7c5148d168e18b05aed797e03fbd6ead",
+        "sandbox/v2/entry.sh": "319306890c400dcac27de6ba3dcdc6d4108180f90609dc0c4dec57323e6a44ce",
+        "sandbox/v2/execute.py": "d336d9c5c5d98f7e0bea9b2f041a2637dd503f0d2a98e9487ae93d2f2227b1ae",
+        "sandbox/v2/hook_run.py": "ada88121e087b70dcd74f53e246f7da88cef47907a8a2f585484ea528146429c",
+        "sandbox/v2/probe.py": "b3b02df26bc43b1511cd39b438ccbe17c785238bd0708ee996bf085757ebfaf1",
+        "sandbox/v2/runner.Dockerfile": "93012ee72669cbc202832338871ae1308093353adba17a6f15c68ba1372d6ca9",
+        "scripts/exploratory_v2.py": "586f23bbb479927e9c6ac04be17cfa8ce03c927222623ecea9058dae33a98c83",
+        "scripts/exploratory_v21.py": "5689770012f2601e1f51818959ff8a53657e546c874b18733d7db5bc5e9e0a93",
+        "scripts/exploratory_v2_full.py": "c4186769d7798b6585fb65f2d5d3ea4d6b33161f862e858a484a57ecfd62a599",
+        "src/swarm_oversight/config.py": "0cbfcf59d619957d457637c83f9e5a3c0607849277832fd4ca7bb2554b07284d",
+        "src/swarm_oversight/exploratory_v2/__init__.py": "afd6fb14d44bfee6ef2c6e67c1adf4b81257a9b428ad80d5dcdc276bf5e167f3",
+        "src/swarm_oversight/exploratory_v2/analysis.py": "51a88013e33dc336c543b3e5b46da7467e6db11ff4ca39be3b48ab0b60e2b07f",
+        "src/swarm_oversight/exploratory_v2/design.py": "1ae284c5ca95ae318b026d06ced8c908cc33c41d89155b3cb1f1a483a9b5ef9a",
+        "src/swarm_oversight/exploratory_v2/maps.py": "b69d6c4144c14f1cdc3c435dead3749cdca99a11b57bbadfb83c216fa435b4db",
+        "src/swarm_oversight/exploratory_v2/pipeline.py": "57d9edb6402c58777e0d499e831a9a9dbc7c7936f442cc7220a2db62c2dd016d",
+        "src/swarm_oversight/exploratory_v2/runtime.py": "ea11197a14f3f882a2b56e4a972ebbc3e55c17487a5ea2fe906ee910300f55f4",
+        "src/swarm_oversight/exploratory_v21/__init__.py": "2ff5cbec41aedf95939ccffc32f2bd14f9204df93ada573d0ffac65ce2a9938a",
+        "src/swarm_oversight/exploratory_v21/analysis.py": "4b843e2941bc091ee0721a2cdc1b576b3cb3bfb123ff520c57e7d3c5597e22ab",
+        "src/swarm_oversight/exploratory_v21/design.py": "d43ee3a00cacd5a44bd0ef13a506518d64d862fe70026627b1844c776e4f99c4",
+        "src/swarm_oversight/exploratory_v21/judge.py": "729b061995dc5b8b1db4abb7c96ae37dff1acd6bb629a131a261a66e342b14ab",
+        "src/swarm_oversight/judge.py": "92dd2f79325dd65d61645f25a4dc1423bce7471ffe3537cb2c8e1233558922f3",
+        "src/swarm_oversight/llm.py": "c96be9bc55d4a1bb0c509a2d51c077f48dea2247ca94f974c5bbb163e2f5503e",
+        "src/swarm_oversight/maps/__init__.py": "53cb8687f816824f621e00ae4eca18a648499ad3449d21cfbcf5643954d3c36d",
+        "src/swarm_oversight/maps/base.py": "eb98eeeb263e6e1489e9480ee2e11f099962ebaf47b477bce13779749171db58",
+        "src/swarm_oversight/maps/clustering.py": "6ea731f583386e5de96bd0c461ba4c96a0e3dbda3d0f08f53973f0c1eb899f78",
+        "src/swarm_oversight/maps/oracle.py": "a9398506835a6844f429cf31aa73501f51b22db90655be2c47bd35890883263f",
+        "src/swarm_oversight/maps/per_agent.py": "9804145b35321be08c447dd097fa8ba27a9623e6e942c4b17381a0ce96f9b7d9",
+        "src/swarm_oversight/maps/provenance.py": "70d5bd1265f32d4bd8f894662cb50862c1ff1ea090225accd9af7fba997c6e92",
+        "src/swarm_oversight/maps/random_matched.py": "06be1bc17148dfe075771447efe4bbd66463faa6c0dc840831a3e2bf6cc78871",
+        "src/swarm_oversight/maps/singleton.py": "228e07f4d0718c85d16ba2e6a8a9db3ee363023ede98908c4f8b723c5ba8f9ef",
+        "uv.lock": "f47533b717e82df98d9a27e4e0b1ece46a3430736c19b7cbad2c58e69992e821"
+      },
+      "protocol_hash": "7f98f60e29f5b7d477c6d340f85f2ca5e87f952d5de55f638651ebb3ee8efb29",
+      "recorded_utc": "2026-11-08T14:56:08.394526+00:00"
+    },
+    "exploratory_input_freeze.json": {
+      "analysis": "exploratory_v21",
+      "recorded_utc": "2026-11-08T15:01:34.178869+00:00",
+      "scope": "Data binding recorded after generation; collector generates all wording before starting any replay/judging. No attack-piece outcomes used.",
+      "attack_scores_when_recorded": 0,
+      "calibration_batches_when_recorded": 1,
+      "files": {
+        "exploratory_manifest.json": "58badee4f9ba9f3476ac3b2bc5754d451781c040123abe07bda17a5aa9e79ae4",
+        "exploratory_effective_manifest.json": "a8330fe36264d8c5126d8e30a855614b3fb2a04089a93652e5cad3705615ebd1",
+        "exploratory_wording.json": "2b77446fc225654e044d4bdec15ca9830e309ffd9a2544e1303d07aefb7f8066"
+      }
+    },
+    "exploratory_identifier_evaluation_plan.json": {
+      "analysis": "exploratory_v21",
+      "supplementary_exploratory": true,
+      "recorded_utc": "2026-11-08T15:53:31.608644+00:00",
+      "source_hashes": {
+        "scripts/exploratory_v21_identifier_eval.py": "bda09294c3ab01e4176a52389f20d8123da802cbc80868c05e4e1b1813caa908",
+        "src/swarm_oversight/exploratory_v21_identifier.py": "c20182ed25eb086f21f39bec6940e45ec5e8c885a96d878a445af81c56e759e6",
+        "src/swarm_oversight/exploratory_v21/judge.py": "729b061995dc5b8b1db4abb7c96ae37dff1acd6bb629a131a261a66e342b14ab",
+        "src/swarm_oversight/exploratory_v21/analysis.py": "4b843e2941bc091ee0721a2cdc1b576b3cb3bfb123ff520c57e7d3c5597e22ab",
+        "scripts/exploratory_v21.py": "5689770012f2601e1f51818959ff8a53657e546c874b18733d7db5bc5e9e0a93",
+        "docs/V21_IDENTIFIER_JUDGED_ADDENDUM.md": "1d667a4843e9e99220cfb164bbb56f3e920b593043dd0bcffa4df655fe64a90e",
+        "configs/models.yaml": "11bd30d51b4cfdb24fae7e42e5c8d722895bd5558b2a2df3d86fcfb5071d3186"
+      },
+      "primary_scored_cases_when_recorded": 0,
+      "primary_protocol_and_decisions_unchanged": true,
+      "models_wait_for_primary_summary": true,
+      "estimated_additional_usd": 1.5
+    },
+    "exploratory_initial_preflight.json": {
+      "analysis": "exploratory_v21",
+      "checked_utc": "2026-11-08T14:56:25.245298+00:00",
+      "total_credits": 30.0,
+      "total_usage": 6.071019259,
+      "remaining": 23.928980741,
+      "prices": {
+        "openrouter/deepseek/deepseek-v4-flash": [
+          9.1e-08,
+          1.82e-07
+        ],
+        "openrouter/mistralai/mistral-small-3.2-24b-instruct": [
+          7.5e-08,
+          2e-07
+        ]
+      },
+      "images": [
+        "swarm-runner-v2:0.1 sha256:059436a75cb1c64903adfd680a725d0a7b8725e79922076d2cb74c9f5c78d3a6",
+        "swarm-runner:0.1 sha256:b2e07bb6b3d6429e36ec7707f692d39ba447ace1da38f0c0ce29f830ebe1c386"
+      ]
+    },
+    "exploratory_final_audit.json": {
+      "analysis": "exploratory_v21",
+      "checked_utc": "2026-11-08T17:58:19.745985+00:00",
+      "frozen_config_and_scoring_paths_unchanged": true,
+      "collection_and_supplement_source_hashes_unchanged": true,
+      "generated_input_hashes_unchanged": true,
+      "no_tracked_secrets_logs_cache_venv": true,
+      "credential_pattern_scan_filenames": [],
+      "runner_images_match_prelaunch": [
+        "swarm-runner-v2:0.1 sha256:059436a75cb1c64903adfd680a725d0a7b8725e79922076d2cb74c9f5c78d3a6",
+        "swarm-runner:0.1 sha256:b2e07bb6b3d6429e36ec7707f692d39ba447ace1da38f0c0ce29f830ebe1c386"
+      ],
+      "docker_inspection_note": "Known local tag-inspection false-missing-image quirk reproduced; tag listing and full-ID inspection match prelaunch. Existing preflight already uses full-ID inspection; see docs/V2_SETUP.md. No rebuild or setup needed.",
+      "unit_tests": "62 passed",
+      "scoped_ruff": "passed",
+      "repository_ruff": "15 pre-existing sandbox style / unrelated worker syntax findings",
+      "git_diff_check": "passed",
+      "no_commit_or_push": true
+    },
+    "exploratory_transport_primary_amendment.json": {
+      "analysis": "exploratory_v21",
+      "recorded_utc": "2026-11-08T16:05:17.864121+00:00",
+      "wrapper_sha256": "a5477ab497f29085e5783ba976c5c90bcece00972eba566e1f0219f52d2e2922",
+      "stage": "primary",
+      "reason": "Provider HTTP 429 exhausted existing retries at 11 calibration batches; no attack-piece outcomes yet.",
+      "initial_concurrency": 8,
+      "initial_start_interval_seconds": 0.35,
+      "bounded_attempts": 3,
+      "retry_pause_seconds": 30,
+      "unchanged": "Prompts, data, maps, models/params, seeds, q, calibration policies, completed scores and scientific source hashes."
+    },
+    "exploratory_transport_primary_throughput_amendment.json": {
+      "analysis": "exploratory_v21",
+      "recorded_utc": "2026-11-08T16:28:28.564959+00:00",
+      "reason": "First held-out batch required about eight minutes; increase bounded paced concurrency to finish full evaluation sooner.",
+      "previous_concurrency": 8,
+      "previous_interval_seconds": 0.35,
+      "new_concurrency": 16,
+      "new_interval_seconds": 0.2,
+      "bounded_attempts": 3,
+      "fallbacks": [
+        {
+          "concurrency": 8,
+          "interval_seconds": 0.4
+        },
+        {
+          "concurrency": 4,
+          "interval_seconds": 0.8
+        }
+      ],
+      "remaining_primary_estimate_usd": 5,
+      "scientific_changes": false,
+      "checkpoint": {
+        "phase": "reference: audit_off/singleton",
+        "calibration_batches": 15,
+        "reference_batches": 1,
+        "cases": 0
+      },
+      "previous_transport_status": {
+        "phase": "Running",
+        "stage": "primary",
+        "attempt": 1,
+        "concurrency": 8,
+        "start_interval_seconds": 0.35,
+        "pid": 92366,
+        "updated_utc": "2026-11-08T16:05:17.864458+00:00"
+      }
+    },
+    "exploratory_transport_identifier_throughput_amendment.json": {
+      "analysis": "exploratory_v21",
+      "recorded_utc": "2026-11-08T16:36:59.389800+00:00",
+      "reason": "Use primary transport settings after stable operation, before supplement collection starts.",
+      "new_concurrency": 16,
+      "new_interval_seconds": 0.2,
+      "bounded_attempts": 3,
+      "scientific_changes": false,
+      "supplement_started": false,
+      "estimated_additional_usd": 1.5
+    },
+    "exploratory_transport_primary_status.json": {
+      "phase": "Succeeded",
+      "stage": "primary",
+      "attempt": 1,
+      "concurrency": 16,
+      "start_interval_seconds": 0.2,
+      "pid": 7629,
+      "updated_utc": "2026-11-08T17:27:36.488614+00:00"
+    },
+    "exploratory_transport_identifier_status.json": {
+      "phase": "Succeeded",
+      "stage": "identifier",
+      "attempt": 1,
+      "concurrency": 16,
+      "start_interval_seconds": 0.2,
+      "pid": 14015,
+      "updated_utc": "2026-11-08T17:53:25.344766+00:00"
+    }
+  },
+  "source_snapshot": "logs/exploratory_v21/7f98f60e29f5/exploratory_reporting_source_snapshot",
+  "raw_data_directory": "logs/exploratory_v21/7f98f60e29f5",
+  "no_secrets_cache_or_env_copied": true
+}

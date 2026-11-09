@@ -1,0 +1,11 @@
+{
+  "analysis": "exploratory_v2",
+  "post_result_diagnostic": true,
+  "cases": 432,
+  "cases_with_singleton_and_per_agent_size_one_at_every_piece": 432,
+  "piece_pairs": 1296,
+  "identical_piece_scores": 1296,
+  "source": "logs/exploratory_v2/602c1b9a2cff/evaluation/exploratory_scores.json",
+  "interpretation": "Singleton/per-agent attack-piece score differences cannot explain safety differences when all scores are identical; their calibration thresholds differ.",
+  "recorded_utc": "2026-11-08T08:55:27.321285+00:00"
+}

@@ -3,7 +3,20 @@
 Apart Research **Swarm Alignment Hackathon** (Nov 6–8, 2026), Track 4: Multi-Agent Oversight and Control.
 Team: Cardamone, Morill.
 
+**Exploratory v2.1 follow-up:** the current design is in [PROJECT.md](PROJECT.md), with the fixed
+follow-up protocol and commands in [docs/V21_PROTOCOL.md](docs/V21_PROTOCOL.md). Local key/Docker setup
+is in [docs/V2_SETUP.md](docs/V2_SETUP.md). The earlier frozen project is archived in
+[docs/PROJECT_FROZEN.md](docs/PROJECT_FROZEN.md). Its config and scripts remain unchanged.
+Completed v2 results are in [report/exploratory_v2.md](report/exploratory_v2.md). New v2.1 progress is in
+[RESULTS_LIVE.md](RESULTS_LIVE.md). The full v2.1 evaluation and judged identifier supplement are complete
+in [report/exploratory_v21.md](report/exploratory_v21.md), with CSV/JSON exports in
+[analysis/exploratory_v21/](analysis/exploratory_v21/). Verification and remaining limitations are in
+[docs/V21_IMPLEMENTATION.md](docs/V21_IMPLEMENTATION.md).
+
 **All code in this repository was written during the sprint (Nov 7–9, 2026). There is no pre-existing code.**
+
+The overview and commands below describe the original frozen harness. Use the follow-up protocol above
+for the active exploratory experiment.
 
 We test which *grouping rule* (the overseer's "map") lets a trusted monitor catch an attack split across K = 3
 independently launched agents that coordinate only through a shared store. The rules compared are per-agent,
