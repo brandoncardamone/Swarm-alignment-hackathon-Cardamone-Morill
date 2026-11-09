@@ -85,7 +85,7 @@ def fig1():
             "Provenance: linked by files", "Oracle: true group (ceiling)", "Random: same size (control)"]
     for k, t in enumerate(maps):
         box(8.45, 4.95 - k * 0.78, 3.8, 0.6, [t], "#ffffff", INK2, fs=6.6)
-    ax.text(10.35, 0.1, "Judge scores group 0–9 → top q% audited", ha="center", fontsize=6.4, color=INK2)
+    ax.text(10.35, 0.1, "Judge scores each group 0–9; top q% are audited", ha="center", fontsize=6.4, color=INK2)
     save(fig, "fig1_setup")
 
 
