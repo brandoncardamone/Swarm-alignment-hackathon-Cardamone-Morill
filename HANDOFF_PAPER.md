@@ -27,7 +27,7 @@ Authors: Brandon Cardamone, Will Morrill. Never add Claude as a git co-author; n
   - Figure 4 = `fig5_allocation` (`fig4_sharing` is unused after the cut)
   
   Exploratory numbers are hard-coded in that script, copied from the reports below.
-- **Still to fill:** Will Morrill's affiliation (`[Affiliation]`); confirm the Author Contributions line.
+- **Still to fill:** the second author's affiliation (`[Affiliation]`). Both authors are equal contributors.
 - **Style rules applied (deslop skill, github.com/stephenturner/skill-deslop):** no em dashes or arrows, no
   bold-first bullets, active voice with "we", specific claims, varied rhythm. Keep them when editing.
 
@@ -40,8 +40,8 @@ Authors: Brandon Cardamone, Will Morrill. Never add Claude as a git co-author; n
      `results/summary_exposure_EXPLORATORY.md`; tracker `docs/RESULTS_FROZEN_FINAL.md`; brief `docs/PROJECT_FROZEN.md`.
    - Findings: H0 supported (oracle 79% vs per-agent 25%, +54 pp); H-main and H-dilution not supported; the random
      control's lead is an exposure artifact.
-2. **v2 (exploratory, Will).** Scripted agents, 432 streams. Report: `report/exploratory_v2.md`.
-3. **v2.1 (exploratory, Will).** Adds an environment brief, cover history, an exact random control, and size-bin vs
+2. **v2 (exploratory).** Scripted agents, 432 streams. Report: `report/exploratory_v2.md`.
+3. **v2.1 (exploratory).** Adds an environment brief, cover history, an exact random control, and size-bin vs
    global thresholds.
    - Report: `report/exploratory_v21.md`; protocol `docs/V21_PROTOCOL.md`.
    - Post-hoc common-threshold addendum: `docs/V21_COMMON_THRESHOLD_ADDENDUM.md`.

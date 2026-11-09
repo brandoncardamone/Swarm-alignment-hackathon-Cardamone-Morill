@@ -6,7 +6,7 @@ Live numbers: [`RESULTS_LIVE.md`](RESULTS_LIVE.md).
 
 Apart Research **Swarm Alignment Hackathon** (Nov 6–8, 2026), **Track 4: Multi-Agent Oversight and Control**
 (answers Track 4's question "do control protocols hold when the untrusted side is several coordinating agents?").
-Team: Brandon Cardamone, Morill. All code written during the sprint.
+Team: Brandon Cardamone, Will Morrill. All code written during the sprint.
 
 ---
 

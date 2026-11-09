@@ -1,7 +1,7 @@
 # Who Draws the Map? Harness-side grouping for joint review of split swarm attacks
 
 Apart Research **Swarm Alignment Hackathon** (Nov 6–8, 2026), Track 4: Multi-Agent Oversight and Control.
-Team: Cardamone, Morill.
+Team: Brandon Cardamone, Will Morrill.
 
 **Exploratory v2.1 follow-up:** the current design is in [PROJECT.md](PROJECT.md), with the fixed
 follow-up protocol and commands in [docs/V21_PROTOCOL.md](docs/V21_PROTOCOL.md). Local key/Docker setup
