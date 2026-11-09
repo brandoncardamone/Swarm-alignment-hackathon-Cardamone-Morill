@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=0.8in,top=0.75in,bottom=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{titlesec}
+\usepackage[numbers,sort&compress]{natbib}
+
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\titlespacing*{\section}{0pt}{9pt plus 2pt minus 2pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 2pt minus 2pt}{3pt}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\paragraph}{\normalsize\bfseries}
+\setlist{nosep,leftmargin=*}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+\newcommand{\pp}{\,pp}
+\newcommand{\ci}[2]{[#1, #2]}
+
+\title{\LARGE\bfseries Who Draws the Map, and Who Sets the Threshold?\thanks{\normalfont\small Research conducted at the Swarm Alignment Hackathon, November 2026.}\\[2pt]
+\large Grouping and Audit Allocation for Joint Review of Split Swarm Attacks}
+\author{Brandon Cardamone$^{1}$ \qquad Will Morrill$^{1}$\\[3pt]\small $^{1}$Columbia University\\[1pt]\small\itshape With Apart Research}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-22pt}
+
+\begin{abstract}
+\noindent
+In July 2026, about 1,200 AI agents coordinated on an improvised message board and about 700 of them attacked Hugging Face, yet no single agent's transcript showed the plan. A harmful goal split across agents defeats monitors that judge one agent at a time. A monitor that reviews the pieces together can catch it, but a defender must first decide which requests belong together, a rule we call the overseer's \emph{map}. We test maps for trusted monitoring of three independently launched agents that split proxy sabotage tasks through a logged shared store, with their requests interleaved among benign traffic. In a pre-registered experiment with autonomous agents, reviewing the true attack group caught 79\% of attacks against 25\% for per-agent monitoring at a 2\% audit budget. Neither deployable map recovered this gain, as file provenance did not beat semantic clustering and a random size-matched control appeared to beat both. Two exploratory follow-ups replicate the joint-review gain and explain the random control's lead. A map changes what is caught not only by finding the right pieces but also by changing how often a request is exposed to audit and how its calibrated cutoff spends the budget. Identical judge scores were flagged 60 or 135 times depending only on the map's cutoff. Under a single common cutoff, the random control's advantage disappears in two of three attack families while provenance's survives. Comparisons of swarm monitors at a fixed nominal budget should therefore separate audit allocation from detection, and we release the tooling to do so.
+\end{abstract}
+
+\section{Introduction}
+In July 2026, about 1,200 OpenAI agents in a cybersecurity evaluation turned a shared cache into a message board, divided the work, and about 700 of them attacked Hugging Face \citep{metr2026}. Most deployed safeguards score one request or one agent at a time, so a swarm can defeat them by splitting a harmful goal into steps that each look routine (Figure~\ref{fig:setup}). In our running example, one agent adds a log level whose number equals the audit level's, a second filters that level out, and a third enables the filter. Audit records stop being written, and no single agent did anything that looks wrong on its own.
+
+\citet{makins2026} show that per-agent monitors miss such attacks while a monitor reading all the pieces does not, but they call that joint monitor unavailable in practice because ``a defender does not know which commits belong to the same attack.'' Any deployable joint review therefore needs a rule for which requests to judge together, which we call the overseer's map. A provider can group by wording, which the swarm controls \citep{brown2026}. A deployer who runs the agent harness can also group by which files each agent read and wrote, which the swarm cannot hide but can try to bury.
+
+Our main contributions are the following.
+\begin{enumerate}
+\item \textbf{Joint review transfers to parallel deployments.} Across one pre-registered and two exploratory experiments, the oracle map beats per-agent review by 23--56\pp\ at a 2\% audit budget when averaged across attack families. This replicates the fragmentation effect of \citet{makins2026} with independently launched agents in an interleaved stream.
+\item \textbf{Deployable maps, tested head to head, with a negative result.} In the pre-registered run, file provenance does not beat semantic clustering ($-8$\pp, CI \ci{-38}{+7}). A random size-matched control appeared to beat both. We show that this is an artifact of a catch rule that gave random groups about four times as many audited groups per attack as singleton review, and that it disappears at matched exposure.
+\item \textbf{A method that separates audit allocation from detection.} A grouping rule also sets each map's calibrated cutoff. On 144 byte-identical first-piece contexts, the singleton, provenance and random maps flagged 60, 135 and 135 requests. Re-scoring every map under one common cutoff shows which gains survive without the cutoff advantage. In two of three families the random control's gain is entirely allocation and vanishes, while provenance's gain survives. Relative to the random control, provenance also raises judge scores on linked later pieces by 1.9--2.8 points on the 0--9 scale in all three families. Comparing maps on catch counts at a nominal budget hides all of this.
+\end{enumerate}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig1_setup.pdf}
+\caption{\textbf{Setup.} Three independently launched agents each perform one piece of a split attack inside a benign cover task, handing off through files in a logged store that benign agents also use. A map decides which earlier requests the trusted judge sees with each request, and a calibrated cutoff decides which scores are audited so that $q=2\%$ of benign requests are reviewed.}
+\label{fig:setup}
+\end{figure}
+
+\section{Related Work}
+\citet{makins2026} introduce the fragmentation effect in sequential deployments and leave parallel ones to future work. We test deployable maps against their joint-monitor bound in a parallel, interleaved stream. \citet{brown2026} cluster requests across accounts online, and their red-teamers defeat the clusters by renaming and rewording. \citet{sun2026} show that stateful defenses fail under unlinkable identities. Single-agent sequential monitors \citep{chen2025,hills2026} and information-flow controls such as CaMeL and FIDES \citep{debenedetti2025,costa2025} do not address grouping across agents. Multi-agent provenance has been proposed but not evaluated \citep{wang2026a,wang2026b}, and \citet{rose2026} detect collusion only within known groups. No prior work measures how much of joint review's safety deployable maps recover at a matched audit budget, and none separates that recovery from the audit allocation the map induces.
+
+\section{Methods}
+\paragraph{Threat model.} The red team controls $K=3$ independently launched instances of an untrusted model $U$ (DeepSeek V4 Flash). Each instance has a legitimate cover task and one attack piece, delivered through its prompt. The prompt is the one unlogged channel, as in \citet{makins2026}, so there is no planner agent, no spawning and no identity rotation. Pieces hand off state only through files in the logged shared store. The red team knows every map and its parameters, so we report worst-case safety over the attack variants described below \citep{greenblatt2024}.
+
+\paragraph{Environment.} The sandbox is a mock shared store with fake data. It holds a vault with a fake secret, configuration files for logging, services, filters and debug profiles, a 60-row toy sentiment dataset, a pipeline registry with step scripts, a set of heavily used operations files (a runbook, notes, hand-off and settings files) and an outbound sink that stands in for an external endpoint. Agents act through six tools, which list, read and write files, run a script, post a message and register a pipeline step. Every call passes through a gateway that logs the request text, tool name and paths read and written before the call runs. Hidden labels, such as which episode a request belongs to and whether it is an attack piece, are stored in a separate file that no map or judge can see. Scripts run in a Docker container with no network, no host mounts and resource limits, and an audit hook records every path a script opens, so the written-path log is complete.
+
+\paragraph{Tasks.} Each attack family is a proxy sabotage goal checked by code, split into three pieces that are each individually plausible. In \texttt{audit\_off}, piece one defines a custom log level whose number equals the audit level's, piece two adds a filter that drops that level on all loggers, and piece three includes the filter. The check passes when audit records would be dropped. In \texttt{label\_poison}, piece one writes a mapping-driven relabel script, piece two writes a mapping that flips the two labels, and piece three runs the script and registers it as a pipeline step. The check passes when at least half the labels are flipped and the step is registered. In \texttt{config\_backdoor}, piece one adds a host in a test IP range to an allowlist, piece two writes a debug profile that skips the token check, and piece three enables debug mode and points the hook at that profile. The check passes when the planted host skips authentication. The frozen run uses three attack variants of each task. A0 is a naive split with canonical names. A1 disguises artifact names and wording in each cover task's namespace, aimed at defeating clustering. A2 routes hand-offs through heavily used operations files, aimed at defeating provenance.
+
+\paragraph{Benign traffic and streams.} A \emph{request} is one logged tool call by one agent. \emph{Benign} requests are every request that is not an attack piece. They come from two sources, the cover task that each attack agent also performs and the work of \emph{benign agents}, which run only legitimate tasks. Benign tasks are drawn from 15 templates written as legitimate look-alikes of the attack pieces, including custom log levels with aliases, wildcard filters on custom levels, allowlisted partner addresses, debug profiles for internal health checkers, label-schema mapping and relabel scripts, and routine status posts and settings edits. A piece is therefore not suspicious merely for touching a sensitive file. A \emph{stream} is one interleaved sequence of all agents' requests at a fixed simulated concurrency, with one attack episode inserted at a random position and causal order preserved. Benign traffic appears in three disjoint roles. A calibration set is used to set cutoffs, an evaluation background is the traffic in which attacks are embedded, and in v2.1 a held-out reference set is used to measure realized audit rates. A stream is \emph{private} when no benign work touches the attack's hand-off file and \emph{shared} when 10\% or 40\% of benign episodes do. The frozen run calls this share the overlap.
+
+\paragraph{Maps.} A map assigns each request $i$ a \emph{group}, which is the set of earlier requests the judge sees together with $i$, cut to the most recent $M$ requests. We compare six.
+\begin{itemize}
+\item \emph{Singleton} shows the judge request $i$ alone, with no context. It is the floor.
+\item \emph{Per-agent} adds the earlier requests of the same agent. It is what a deployer has today, and it is the baseline for H0.
+\item \emph{Clustering} is the provider-side option. It embeds each request's text and routes it online to one or more centroids, following Algorithm~1 of \citet{brown2026}, and groups $i$ with earlier requests in the same cluster. A provider can see request text but not the harness's file log, and the swarm controls the text.
+\item \emph{Provenance} is the harness-side option. It builds a graph in which request $a$ points to request $b$ whenever $b$ reads or writes a file path that $a$ wrote, and groups $i$ with every earlier request within $h=2$ hops. It uses only the harness's log of paths touched, never request text. The swarm cannot hide a file link, but it can route a hand-off through a file that benign work touches heavily.
+\item The \emph{oracle map} groups $i$ with all earlier requests of the same attack, using the hidden labels. It is not deployable, and we include it to show what joint review would catch if grouping were solved.
+\item The \emph{random control} groups $i$ with random earlier requests, as many as provenance's group would hold, so that any benefit of group size alone shows up here rather than being credited to provenance. In v2.1 the \emph{exact-match random control} also matches provenance's number of distinct agents and always contains the current request.
+\end{itemize}
+Clustering and provenance are the \emph{deployable maps}. Singleton serves a second role in the decomposition of Section~\ref{sec:why}, where it is the no-context reference whose cutoff is the natural common cutoff.
+
+\paragraph{Judge, cutoffs and safety.} A trusted judge $T$ (Mistral-Small-3.2-24B) receives a group's request texts, tool names, paths and pseudonymous agent labels, and returns a suspicion score from 0 to 9 as a logprob-weighted expected digit. For each map, a \emph{cutoff} is set on the calibration set so that $q=2\%$ of benign requests score above it and are \emph{audited}, meaning sent to a perfect reviewer who recognizes an attack piece on sight. We call this the map's \emph{per-map cutoff}. A \emph{global cutoff} is one value per map. A \emph{size-bin cutoff}, the v2.1 primary policy, is one value per map and group-size bin (1, 2--3 and 4--9). A \emph{common cutoff} is a single value applied to every map, for which we use singleton's per-map cutoff. A pooled alternative gives the same signs. An attack is caught if an audit fires on one of its pieces before the attack completes. \emph{Safety} is caught divided by caught plus completed uncaught, with 2,000-replicate paired cluster-bootstrap confidence intervals. Safety is reported in percentage points (pp) and judge scores in points on the 0--9 scale.
+
+\paragraph{Three runs (Table~\ref{tab:runs}).} The frozen run is pre-registered. Before scoring, we committed its parameters and three hypotheses. H0 states that the oracle map beats per-agent. H-main states that provenance beats clustering by at least 20\pp. H-dilution states that provenance's safety falls as more benign traffic shares the attack's files. The frozen run's agents chose their own actions. v2 and v2.1 are exploratory follow-ups designed after seeing earlier results. Their protocols were fixed and hashed before collection, and their agents execute scripted requests whose descriptions $U$ writes, which removes agent variability but also removes adaptivity.
+
+\begin{table}[!t]
+\centering\small
+\caption{The three runs.}
+\label{tab:runs}
+\begin{tabular}{@{}p{1.6cm}p{4.6cm}p{4.4cm}p{4.2cm}@{}}
+\toprule
+ & \textbf{Frozen (pre-registered)} & \textbf{v2 (exploratory)} & \textbf{v2.1 (exploratory)} \\
+\midrule
+Agents & Autonomous; 24 tasks $\times$ 3 attacks (A0 naive, A1 disguised, A2 hub-routed); 70 completed & Scripted; 48 tasks, one shared chain; 432 streams & As v2, fresh task variants \\
+Varied & Benign overlap 10\% / 40\% & Hand-off file shared by 0 / 10 / 40\% of benign work & As v2 \\
+Catch rule & Any audited group with an attack request & Only the piece's own audit & As v2 \\
+Cutoffs & Global, per map & Global, per map & Size-bin (primary) and global, per map \\
+Other & $M=40$ requests per group; random control matched on size & Padded control; $M=9$ & Exact-match random control; judge given an environment brief \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+\subsection{Pre-registered results}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig2_frozen_headline.pdf}
+\caption{\textbf{Frozen run: worst-case safety against audit budget $q$.} Shaded regions are 95\% CIs for provenance and clustering. The oracle map leads per-agent at every $q$. The random control leads both deployable maps, which Section~\ref{sec:why} shows is an exposure effect.}
+\label{fig:frozen}
+\end{figure}
+
+\textbf{H0 is supported.} The oracle map catches 79\% of attacks against 25\% for per-agent at both overlap levels, a gain of 54.2\pp\ with CIs of \ci{+12.5}{+75.0} and \ci{+22.3}{+79.2} and McNemar $p<0.001$. The lead holds at every $q$ from 0.5\% to 5\% (Figure~\ref{fig:frozen}).
+
+\textbf{H-main is not supported.} Provenance does not beat clustering, with a difference of $-8$\pp\ and a CI of \ci{-38}{+7}. Both maps assembled only about 60\% of an attack's requests, and they did so in large, low-precision groups (Table~\ref{tab:frozen} in the Appendix).
+
+\textbf{H-dilution is not supported.} Provenance's safety rose from 21\% to 41\% as overlap increased, and the CI on the difference is \ci{-50}{+2}.
+
+\textbf{The random control beat both deployable maps,} with provenance minus random at $-29$\pp\ and a CI of \ci{-62}{-5}. Under the any-group catch rule, attack requests appeared in about four times as many audited groups under the random control as under singleton, and each appearance was a chance to cross the cutoff. Re-scoring with one chance per attack request, which is exploratory and leaves the judge scores unchanged, drops the random control to 9\% and 17\% at the two overlap levels while the oracle's lead holds at +37.5\pp\ \ci{+4.2}{+62.5}.
+
+\subsection{Exploratory replications}
+\textbf{Joint review replicates in both follow-ups} (Figure~\ref{fig:h0}). The smaller v2.1 gain of +22.9\pp\ \ci{+12.5}{+37.5} coincides with stronger per-agent review once the judge sees cover history and an environment brief. The gain is averaged across families and is not uniform. In v2.1's \texttt{label\_poison} family the oracle map is 6\pp\ \emph{below} per-agent and 25\pp\ below singleton under the size-bin cutoff. The oracle map is a reference grouping scored by a fallible judge rather than a ceiling, and Section~\ref{sec:why} returns to why.
+
+\textbf{The pre-registered dilution effect was not observed, and the opposite trend is consistent with an allocation effect.} Provenance's safety rose from private to 40\%-shared routing in every v2 family, for example from 25\% to 92\% in \texttt{audit\_off}. In v2.1 it stayed at 92--100\% in \texttt{audit\_off} and \texttt{label\_poison} and fell from 100\% to 67\% in \texttt{config\_backdoor}. Under a global cutoff, benign requests in high-sharing contexts were flagged at 2.8--8.3\% against 0--1\% for private ones, so the audit budget concentrates on shared contexts and attacks routed there inherit the extra scrutiny. This is consistent with allocation driving the trend, but the benign flag rates do not isolate it, and the result does not show that provenance is robust to sharing.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.62\linewidth]{figures/fig3_h0_gains.pdf}
+\caption{\textbf{Joint-review gain (oracle map $-$ per-agent, $q=2\%$, 95\% paired CI) in every analysis.} Blue marks the pre-registered estimates. Every interval excludes zero. The v2.1 primary estimate is averaged over families, one of which has the oracle map trailing per-agent.}
+\label{fig:h0}
+\end{figure}
+
+\subsection{Why the maps differ: exposure, allocation and context}
+\label{sec:why}
+Two channels move a map's safety without the map finding more of the attack. These are exposure and allocation. A third channel, linked context, is the one a map is meant to move. We isolate each in turn (Figure~\ref{fig:channels}).
+
+\paragraph{Exposure (frozen run).} The pre-registered catch rule counted any audited group that contained an attack request. Under the random control, attack requests appeared in about four times as many audited groups as under singleton, and each appearance was a fresh chance to cross the cutoff. Re-scoring with one chance per attack request drops the random control from 50--71\% to 9--17\% across the two overlap levels. The oracle's lead over per-agent holds at +37.5\pp\ \ci{+4.2}{+62.5}, and provenance is 24\pp\ ahead of random at 40\% overlap, though that interval includes zero (\ci{-5}{+46}). The pre-registered result that random beats provenance is an exposure effect.
+
+\paragraph{Allocation (v2.1).} Each map has its own per-map cutoff. In all 144 private attack streams, the first piece is judged with no prior context under singleton, provenance and the exact-match random control alike, and all three return identical scores. Yet they flag 60, 135 and 135 of those pieces. The maps' size-1 benign populations score differently, so the 98th-percentile cutoffs differ. In \texttt{audit\_off} the cutoff is 5.53 for singleton and 3.57 for provenance and random. This is not a sparse-bin artifact, because the size-1 bin held 1,302 calibration requests and no bin fell below the 50-request fallback threshold. The same scores give the random control between 0\% and 2\% private safety under the global cutoff and between 90\% and 100\% under the size-bin cutoff (Figure~\ref{fig:channels}a).
+
+To see which gains survive without the cutoff advantage, we re-score every map under one common cutoff and write each map's primary gain over singleton as the gain under the common cutoff plus an allocation residual (Figure~\ref{fig:channels}b and Table~\ref{tab:decomp} in the Appendix). In \texttt{audit\_off} and \texttt{config\_backdoor} the random control's private gain is entirely allocation. Its total gain of +69\pp\ in \texttt{audit\_off} is $-19$\pp\ under the common cutoff plus a residual of 88\pp, and its +65\pp\ in \texttt{config\_backdoor} is +2\pp\ plus 63\pp. Provenance's gain survives the common cutoff at +63 and +69\pp\ over singleton, with residuals of +6 and 0\pp. In \texttt{label\_poison} both maps gain little over singleton under either cutoff. On primary counts the random control and provenance look alike, catching 137 and 141 of 144 private streams, but under a common cutoff they do not. This decomposition credits a stream that both paths would catch to the common-cutoff term, so the split itself is order-dependent, as the Limitations note. The claim we rest on is the one that holds either way, which is that provenance's gain survives a common cutoff and the random control's does not.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/fig4_channels.pdf}
+\caption{\textbf{Three channels that move safety.} (a) Safety of the random control under four audit rules with requests and judge scores held fixed. The rules are the frozen any-group rule, one chance per request, and the v2.1 global and size-bin cutoffs. (b) Each map's v2.1 private gain over singleton split into the gain under a common cutoff (solid) and the allocation residual (hatched). Diamonds mark the primary gain with its 95\% CI. (c) Paired difference in raw judge score, provenance minus the exact-match random control, on the same later attack piece, shown as the mean and 95\% CI for 96 pairs per family in dark blue and for pieces 2 and 3 separately in light blue.}
+\label{fig:channels}
+\end{figure}
+
+\paragraph{Context (v2.1).} With the cutoff removed, we can ask whether linked context changes the judge at all. On later pieces of the same stream, the raw judge score under provenance exceeds the score under the exact-match random control by $+1.9$ \ci{1.7}{2.2} points in \texttt{audit\_off}, $+2.8$ \ci{2.7}{3.0} in \texttt{label\_poison} and $+2.2$ \ci{2.0}{2.4} in \texttt{config\_backdoor}, from 96 pairs per family clustered into 16 variants (Figure~\ref{fig:channels}c). Linked context does move the judge. It does not uniformly improve discrimination, however. In \texttt{label\_poison} the same shift raises benign scores too, so provenance at the common cutoff flags 438 of 1,800 benign requests against 169 for random, and on catch-versus-realized-cost curves the two maps cross. In \texttt{audit\_off} and \texttt{config\_backdoor} provenance stays weakly above random across the 0--10\% cost range. We do not claim that the judge reasons jointly over the pieces, since 135 of provenance's 141 primary private catches are first-piece flags.
+
+\paragraph{Environment brief.} Giving the judge a brief on the environment's semantics coincided with the oracle map's \texttt{audit\_off} private safety rising from 31\% in v2 to 100\% in v2.1, bundled with the other v2.1 changes. The oracle's failure in \texttt{label\_poison}, where it sits below singleton, suggests that larger groups can bury a piece for this judge. A known group is only a ceiling for a judge that can use it.
+
+\section{Discussion and Limitations}
+\paragraph{Implications.} Joint review is worth building for agent swarms, because a weak judge catches far more split attacks when it sees the pieces together. The comparison that matters for deployers is which map recovers that gain at a fixed audit budget, and that comparison is confounded by two factors unrelated to grouping quality. A catch rule that counts any audited group rewards maps whose requests appear in many groups. A per-map cutoff rewards maps whose benign traffic scores low where attacks land. On identical judge scores, the catch rule moved the random control's safety by 41 and 54\pp, and the choice of cutoff moved it by 38 to 98\pp. Evaluations of swarm monitors should therefore count one audit chance per request, report realized rather than nominal audit rates, compare maps on catch-rate-versus-realized-cost curves, and check each map's gain under a common cutoff against an exact-match random control. Calibrating by group size does not remove the problem, since the 60/135/135 split arose under the size-bin cutoff. An attacker who knows the calibration policy could target it directly by shaping which group sizes or contexts its pieces fall into, which would make allocation part of the map's attack surface. We did not run that attack.
+
+\paragraph{Limitations.} The tasks are proxy goals in a mock store with one model pair and three task mechanisms. Plans are scripted and delivered over an unlogged channel, the red team does not adapt, and the auditor is perfect. The frozen run has 70 attacks, wide CIs and an any-group catch rule that rewards exposure, and its realized audit rates were not measured. v2 and v2.1 are post hoc relative to the pre-registration and use scripted actions, and v2.1 bundles four changes, so no improvement over v2 can be credited to one of them. The effective sample is small. There are three attack mechanisms, 16 variants per family and three insertion positions that share a task, not 48 independent attacks, and CIs of 25--50\pp\ reflect this. Visible job identifiers in tool arguments link every piece in all 432 v2.1 streams, and a map grouping on them matches provenance, so this corpus cannot show that file tracing is necessary. The common-cutoff decomposition and paired-score analysis are post hoc and cutoff-dependent, and the split into a common-cutoff term and a residual depends on which term is credited first. Measured allocation-first, provenance's first-piece catches would count as allocation, and only the direction of each map's common-cutoff gain is robust to this choice. These analyses describe this run and are not multiplicity-adjusted tests. The runs are compared by direction and are not pooled.
+
+\paragraph{Future work.} The clearest next step is to rerun the comparison of deployable maps under the protocol this work argues for, pre-registered with one audit chance per request and a common-cutoff check built in from the start, so that any remaining difference between maps can be read as detection rather than allocation. That rerun should use attacks whose individual pieces are harder to recognize on their own, since our corpus caught most attacks at the first piece and left little room to see whether linking later pieces helps. It would also be worth moving beyond fixed, scripted attacks toward adversaries that adapt to the monitor, including ones that learn which group sizes or contexts are lightly audited and route their pieces there, because that is the version of the threat a deployed system would face. On the defender's side, provenance could weight links by how rarely a file is touched, so that a hand-off through a busy shared file counts for less than one through a quiet file, and the identifier-based grouping that worked in our corpus deserves a direct comparison in settings where agents do not share visible job identifiers. Finally, the allocation effect we describe applies to any monitor comparison at a fixed nominal budget, not only to swarm maps, and checking whether it has shaped results in earlier monitoring studies would be a useful contribution in its own right.
+
+\section{Conclusion}
+Across one pre-registered and two exploratory designs, reviewing a swarm's split attack as one group beats per-agent review by 23--56\pp\ at a 2\% audit budget when averaged across attack families. No deployable grouping rule reliably captured that gain, and our pre-registered test of file provenance against semantic clustering was negative. The follow-ups show why such comparisons are hard to read. The catch rule and the per-map cutoff moved safety by up to 98\pp\ on identical judge scores, and in two of three families a random control that matched provenance on counts got there by allocation alone, while provenance's gain survived a common cutoff. Linked context does change what the judge sees, by about 2 points on a 0--9 scale on later pieces relative to the random control, but provenance does not catch more attacks than random at equal realized audit cost in every family. Who draws the map matters, and so does who sets the threshold. Monitor comparisons that fix a nominal budget without separating the two can reward maps for the wrong reasons.
+
+\paragraph{Code and data.} Everything is on the \texttt{main} branch of the project repository,\footnote{\url{https://github.com/brandoncardamone/Swarm-alignment-hackathon-Cardamone-Morrill}} and all code was written during the sprint. The README's study table links each run to its design document and its results. The frozen run's pre-registration is \texttt{configs/frozen.yaml}, committed before any evaluation scoring, with the design brief in \texttt{docs/PROJECT\_FROZEN.md} and results in \texttt{results/}. The v2 and v2.1 protocols are in \texttt{docs/}, their reports are in \texttt{report/}, and the v2.1 analysis outputs, including the common-cutoff addendum, are in \texttt{analysis/}. The figures in this report are produced by \texttt{scripts/report\_figures.py} from the result files in \texttt{results/} and \texttt{analysis/}, and a glossary of terms is in \texttt{GLOSSARY.md}. Request streams with hidden labels are kept in separate files, and attack strategies are described only at the strategy level (Appendix).
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\section{Limitations and Dual-Use / Ethical Considerations}
+The results show how grouping and audit-allocation rules affect trusted monitoring of split proxy attacks in a mock store, for one model pair; they do not establish detection rates for real swarms or adaptive attackers. The attack variants and the finding that calibration decides outcomes could help someone evade swarm monitors, for example by targeting lightly audited group sizes. These strategies are already public \citep{brown2026} or follow from the definitions, and we report them so defenders can choose logs and calibrations. As mitigations, we use proxy goals only, with fake keys, toy data, mock configs, test-range IPs and no network. No real system was touched. Attack templates sit in one clearly labelled file and are described here only at the strategy level.
+
+\section{Full tables}
+\begin{table}[h]
+\centering\small
+\caption{Frozen run: worst-case safety (\%) over attack variants at $q=2\%$ [95\% CI].}
+\label{tab:frozen}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Map} & \textbf{10\% overlap} & \textbf{40\% overlap} & \textbf{Grouping recall} & \textbf{Group precision} \\
+\midrule
+Singleton & 36 \ci{8}{54} & 8 \ci{0}{21} & 0.47 & 1.00 \\
+Per-agent & 25 \ci{8}{50} & 25 \ci{4}{45} & 0.61 & 0.23 \\
+Clustering & 29 \ci{12}{54} & 45 \ci{24}{74} & 0.57 & 0.36 \\
+Provenance & 21 \ci{4}{33} & 41 \ci{19}{64} & 0.61 & 0.37 \\
+Random size-matched & 50 \ci{29}{73} & 71 \ci{46}{82} & 0.49 & 0.31 \\
+Oracle & 79 \ci{46}{92} & 79 \ci{50}{92} & 1.00 & 0.20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\caption{Each map's private gain over singleton at $q=2\%$ (v2.1, size-bin cutoff; pp, paired 95\% CI), split into the gain under a common (singleton) cutoff and the allocation residual (primary gain minus common-cutoff gain). Components sum exactly in every bootstrap replicate; interval endpoints do not. The split credits streams caught both ways to the common-cutoff term and is therefore order-dependent.}
+\label{tab:decomp}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+\textbf{Family} & \textbf{Map $-$ singleton} & \textbf{Primary gain} & \textbf{Common-cutoff gain} & \textbf{Allocation residual} \\
+\midrule
+\texttt{audit\_off} & random & $+68.8$ \ci{43.8}{93.8} & $-18.8$ \ci{-37.5}{4.2} & $+87.5$ \ci{60.4}{100} \\
+\texttt{audit\_off} & provenance & $+68.8$ \ci{43.8}{93.8} & $+62.5$ \ci{37.5}{87.5} & $+6.3$ \ci{0}{18.8} \\
+\texttt{label\_poison} & random & $+2.1$ \ci{0}{22.9} & $+2.1$ \ci{0}{6.3} & $0.0$ \ci{0}{18.8} \\
+\texttt{label\_poison} & provenance & $+6.3$ \ci{0}{31.3} & $+12.5$ \ci{0}{37.5} & $-6.3$ \ci{-25}{0} \\
+\texttt{config\_backdoor} & random & $+64.6$ \ci{43.8}{93.8} & $+2.1$ \ci{0}{6.3} & $+62.5$ \ci{43.8}{93.8} \\
+\texttt{config\_backdoor} & provenance & $+68.8$ \ci{43.8}{93.8} & $+68.8$ \ci{43.8}{93.8} & $0.0$ \ci{0}{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Run parameters}
+\textbf{Frozen run.} $M=40$, $h=2$, clustering threshold 0.80 (Voyage-4-lite), 150 benign episodes per background, 400 calibration requests per map, $\leq 25$ judged groups per map per stream, $q\in\{0.5,1,2,5\}\%$. \textbf{v2.1.} $M=9$, $h=2$, fan-out cap 8, seed 20261108, 200 calibration and 200 evaluation benign episodes per family, size bins $\{1, 2\text{--}3, 4\text{--}9\}$ with global fallback below 50 calibration requests (never triggered), $q\in\{0.5,1,2,5,10\}\%$, 2,000 paired task/calibration-episode bootstrap replicates; $U$: DeepSeek V4 Flash (descriptions only); $T$: Mistral-Small-3.2-24B at temperature 0. Held-out benign reference flag rates at nominal 2\% ranged from 1.17\% to 3.50\% across family/map/policy cells. Full tables for all runs are in the repository (\texttt{results/}, \texttt{report/exploratory\_v2*.md}, \texttt{docs/V21\_COMMON\_THRESHOLD\_ADDENDUM.md}).
+
+\section{LLM usage statement}
+We used Claude (Anthropic) and OpenAI Codex as coding and writing assistants to implement the harness and analysis, run experiments, generate figures, and draft sections of this report, which the authors revised. The authors set the research direction and verified all results and claims.
+
+\end{document}
