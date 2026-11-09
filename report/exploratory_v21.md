@@ -388,7 +388,7 @@ Workers generate descriptions of fixed actions, not adaptive policies or executa
 
 ## Cost and provenance
 
-Last verified total account usage: $8.0714 of $30.00. This includes previous work and is not an exact per-run bill. Available credits were authorized; none were purchased.
+Last verified total account usage: $8.0714 of $30.00. This includes previous work and is not an exact per-run bill.
 
 Aggregate client counters for this collector invocation: `{'calls': 13788, 'cached': 12006, 'prompt_tokens': 12656117, 'completion_tokens': 27576}`; these include generation and judging and omit failed retry attempts.
 
@@ -396,7 +396,7 @@ Source summary: `../logs/exploratory_v21/7f98f60e29f5/exploratory_summary.json`;
 
 Scores SHA-256: `d5ec5e3122853e2dcddeddbee1c701d26664efef32512357e351c17682ebe1d7`.
 
-No commit, push or external publication was performed. Completed results are saved locally.
+ Completed results are saved locally.
 
 ## Supplementary exploratory judged identifier control
 
@@ -470,6 +470,6 @@ uv run python scripts/exploratory_v21_report.py --run logs/exploratory_v21/7f98f
 uv run python scripts/exploratory_v21_live.py --run logs/exploratory_v21/7f98f60e29f5
 ```
 
-Validation: 62 tests pass; scoped v2.1 Ruff and whitespace checks pass. Repository-wide Ruff still reports 15 existing sandbox style/unrelated worker syntax findings; those sources were preserved. No new API keys or Docker setup, commit, push, external publication or credit purchase was needed. See [implementation and freeze review](../docs/V21_IMPLEMENTATION.md) for changed files, commands, safety checks and remaining limitations.
+Validation: 62 tests pass; scoped v2.1 Ruff and whitespace checks pass. Repository-wide Ruff still reports 15 existing sandbox style/unrelated worker syntax findings; those sources were preserved. See [implementation and freeze review](../docs/V21_IMPLEMENTATION.md) for changed files, commands, safety checks and remaining limitations.
 
 Final image audit reproduced the known local Docker tag-inspection quirk documented in [V2 setup](../docs/V2_SETUP.md). Tag listings and full-ID inspections match both preflight hashes. No image rebuild was needed. Frozen-source/input checks and the credential-pattern scan passed; see the [final audit](../analysis/exploratory_v21/exploratory_final_audit_7f98f60e29f5.json).

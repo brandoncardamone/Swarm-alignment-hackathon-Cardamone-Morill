@@ -2,7 +2,7 @@
 
 Supersedes `docs/v1.pdf` (the pitch brief). Same research question and core design, updated with everything decided
 and built during the sprint. Every change from v1 is listed in §8. Status as of **Sat Nov 7, 2026, ~11:15 PM ET**.
-Live numbers: [`RESULTS_LIVE.md`](RESULTS_LIVE.md).
+Live numbers: [`RESULTS_FROZEN_FINAL.md`](RESULTS_FROZEN_FINAL.md).
 
 Apart Research **Swarm Alignment Hackathon** (Nov 6–8, 2026), **Track 4: Multi-Agent Oversight and Control**
 (answers Track 4's question "do control protocols hold when the untrusted side is several coordinating agents?").

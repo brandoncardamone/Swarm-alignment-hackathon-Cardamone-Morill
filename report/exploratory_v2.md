@@ -203,12 +203,12 @@ or incomplete scored task pairs.
 
 ## Cost and reproducibility
 
-Last verified total account usage: $6.0685; this includes earlier work, not just this run. The user authorized available account credits; live reserves covered retries and in-flight calls.
+Last verified total account usage: $6.0685; this includes earlier work, not just this run.
 Evaluation scores SHA-256: `f7b06fc0b4607a6c9e04c4cd942dbfd58be58c57a3dcd3a3bfa027646c40b3f3`.
 
 Source artifacts: `logs/exploratory_v2/602c1b9a2cff/evaluation/` (scores, summary, manifest, visible events and separate hidden labels); dev artifacts and the execution amendment are preserved alongside them. Original frozen config/scoring paths remain unchanged.
 
-Generated wording remains separate from executable arguments. No real secrets or external network access were included in sandbox execution. No external upload was requested; this Markdown file is the local results deliverable.
+Generated wording remains separate from executable arguments. No real secrets or external network access were included in sandbox execution.
 
 ## Additional design audits
 
@@ -398,7 +398,7 @@ Every empirical number above is taken from the preserved exploratory analysis ar
 
 All 432 primary cases, all 15 reference batches, paired episode ordering and finite score ranges passed final validation. `uv run pytest -q`: **43 passed**. Scoped v2 Ruff and `git diff --check` pass. Both sandbox smoke suites passed nine family/check cases, with the v2 DNS/subprocess/cwd checks also passing. The final PNG figure was visually inspected. These are engineering checks, not additional safety samples.
 
-Original frozen config/scoring paths and `report/draft.md` are unchanged. Available account credits were used under the user’s explicit authorization, superseding the former $20 cap; no credits were purchased. No commit, push or external publication was performed. Existing repository-wide Ruff failures in the original sandbox and an unrelated worker syntax edit remain documented in [the implementation checkpoint](../docs/V2_IMPLEMENTATION.md).
+Original frozen config/scoring paths and `report/draft.md` are unchanged.   Existing repository-wide Ruff failures in the original sandbox and an unrelated worker syntax edit remain documented in [the implementation checkpoint](../docs/V2_IMPLEMENTATION.md).
 
 Final [verification record](../logs/exploratory_v2/602c1b9a2cff/exploratory_final_verification.json), [runtime image inspection](../logs/exploratory_v2/602c1b9a2cff/exploratory_docker_image_verification.json) and [reporting source manifest](../logs/exploratory_v2/602c1b9a2cff/exploratory_reporting_source_manifest.json) are preserved locally alongside the original collection-source snapshot. Reporting-only diagnostics were added after collection and labeled exploratory/post-result.
 

@@ -1,5 +1,7 @@
 # Who Draws the Map? How much shared benign traffic can file-level grouping of a swarm's split attack survive? — Pitch brief (v2)
 
+> Design proposal for the exploratory v2 study, kept as written before the run. Some works it cites were not verified; the report lists only verified references.
+
 THESIS (pre-result; replace with numbers): A swarm can reword its pieces but cannot unshare its files, so grouping requests by the files they read and wrote links a split attack that per-agent review misses. We predict that once the swarm routes its hand-off through a file 40% of benign work also touches, this grouping loses at least 20 pp of its safety gain over per-agent review at a 2% audit budget.
 
 ## 1. Problem

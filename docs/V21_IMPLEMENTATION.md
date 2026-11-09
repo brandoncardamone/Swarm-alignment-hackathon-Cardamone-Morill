@@ -1,7 +1,6 @@
 # Exploratory v2.1 implementation and execution checkpoint
 
-Branch: `exploratory/v21-structural-fixes`. The user authorized structural improvements, full evaluation
-and all remaining OpenRouter credits. No commit, push, credit purchase or external upload was made.
+Branch: `exploratory/v21-structural-fixes`.
 Completed original v2 results, source hashes, traces and caches are preserved.
 
 ## Changes
@@ -66,7 +65,6 @@ The unrelated original worker syntax edit and other pre-existing working-tree ch
 | Label hiding | PASS | Exact control accepts only visible events/target sizes/roots; hidden-label invariance test passes |
 | Sandbox | PASS | Original image reused, no network/host mounts; actual security and replay checks pass |
 | Secrets/cache | PASS | No `.env` contents printed or copied; generated run data and persistent cache stay ignored |
-| Account authorization | PASS with recorded exception | User explicitly superseded former $20 cap; about $23.93 verified available at launch |
 | References | PASS | Approved PROJECT section 13 retained; no imported unverified proposal claims adopted |
 | Repository-wide Ruff | Existing failure outside follow-up | Original sandbox style findings and unrelated worker.py missing `try:` remain documented |
 
@@ -149,6 +147,6 @@ Latest verified account usage is $8.0714, including prior work, versus $6.0710 a
 $2.00 incremental usage and $21.93 remaining. This is an account delta, not an exact per-run bill.
 All 62 tests and scoped v2.1 Ruff checks pass. Repository-wide Ruff retains 15 existing sandbox style
 and unrelated worker syntax findings. Original frozen/v2 sources and reports remain preserved.
-No new keys or Docker setup were needed. No commit, push, external publication or credit purchase occurred.
+
 
 The final image audit reproduced the known Docker tag-inspection quirk in `docs/V2_SETUP.md`; tag listings and full-ID inspection match both prelaunch image hashes. No rebuild was needed. Credential-pattern, frozen-path and final source/input hash checks pass. All model/reporting processes have exited; final live tracker refresh is complete.

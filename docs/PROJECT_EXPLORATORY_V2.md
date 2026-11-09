@@ -1,14 +1,14 @@
 # Who Draws the Map? Shared-file routing and joint review (exploratory v2)
 
-This branch implements the design in `v2.md`. The earlier project is archived verbatim in
-[`docs/PROJECT_FROZEN.md`](docs/PROJECT_FROZEN.md). Its pre-registration, experiment code,
+This branch implements the design in `docs/v2_pitch.md`. The earlier project is archived verbatim in
+[`docs/PROJECT_FROZEN.md`](PROJECT_FROZEN.md). Its pre-registration, experiment code,
 outputs and report remain separate. **All v2 work is exploratory**, following the existing freeze;
 none of the old evaluation is retroactively re-registered.
 
 ## 0. Status and setup
 
 Stage A primary evaluation is complete: 48 tasks, 432 selected-arm replay/judging cases, no incomplete
-cases. Results, paired intervals and design audits are in [`report/exploratory_v2.md`](report/exploratory_v2.md).
+cases. Results, paired intervals and design audits are in [`report/exploratory_v2.md`](../report/exploratory_v2.md).
 The overall joint-review check passed, but H1 is untestable in every family under the fixed private-gain
 ceiling rule. Provenance safety descriptively rises with sharing. All 15 supplementary benign-only reference
 validation batches are complete, using unchanged thresholds. Realized benign audit fractions differ across
@@ -114,11 +114,8 @@ All outputs include `exploratory` in paths; v2 report is `report/exploratory_v2.
 
 ## 10. Budget and paid execution
 
-The latest explicit user authorization permits all available OpenRouter account credits, superseding
-the earlier $20 project cap for this exploratory run. Account credit/usage metadata is checked live;
-full judging reserves for retries and in-flight requests. Report cost estimates before paid phases
-and record usage. The original frozen configuration and experiment are not altered by this budget
-authorization. Generation/scoring still require an explicit cost estimate and API opt-in.
+Cost estimates are reported before paid phases and usage is recorded. The original frozen configuration and
+experiment are not altered.
 No key is needed for plans, tests, linkage analysis or fixture smoke; Docker is required for execution.
 Before full judging, complete local smoke checks, record the dev wording selection and protocol,
 and review costs. An inconclusive dev H0 interval does not block collecting the full evaluation;
@@ -130,7 +127,7 @@ the full-sample H0 result gates interpretation of H1. The original stricter CLI 
 New modules live under `src/swarm_oversight/exploratory_v2/`, the CLI is
 `scripts/exploratory_v2.py`, and the image is `swarm-runner-v2:0.1`. Old experiment paths are untouched.
 The original `report/draft.md` continues to describe the frozen experiment. Stage B and literature
-expansion are deferred. `v2.md` is the imported proposal and retained verbatim; this PROJECT records
+expansion are deferred. `docs/v2_pitch.md` is the imported proposal and retained verbatim; this PROJECT records
 implementation decisions and explicit deviations.
 
 ## 12. Limitations and references policy

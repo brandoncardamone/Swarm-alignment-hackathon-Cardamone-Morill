@@ -40,7 +40,7 @@ def render_live(run: Path, root: Path = ROOT) -> str:
     lines = ["# Live results — exploratory v2", "",
              f"Updated {datetime.now(UTC).isoformat(timespec='seconds')}", "",
              f"Run: `{run.name}`. This tracker covers v2; the original frozen snapshot is preserved in "
-             "[docs/RESULTS_FROZEN_SNAPSHOT.md](docs/RESULTS_FROZEN_SNAPSHOT.md).", "",
+             "[docs/RESULTS_FROZEN_FINAL.md](docs/RESULTS_FROZEN_FINAL.md).", "",
              f"**Phase:** {status.get('phase', 'Dev judging / evaluation preparation')}", "",
              "The latest user authorization permits all available account credits; "
              "a live usage/reservation guard is enabled."]

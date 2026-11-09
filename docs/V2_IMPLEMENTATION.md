@@ -1,8 +1,6 @@
 # Exploratory v2 implementation and evaluation checkpoint
 
-Branch: `exploratory/v2-hub-routing`. No commit or push was made. The user requested the full evaluation
-and local Markdown results, then explicitly authorized all available account credits. No external upload
-is required. All 432 primary cases and all 15 supplementary benign-only validation batches are complete.
+Branch: `exploratory/v2-hub-routing`.   All 432 primary cases and all 15 supplementary benign-only validation batches are complete.
 
 The active result is [`../report/exploratory_v2.md`](../report/exploratory_v2.md), with progress and runtime
 issues in [`../RESULTS_LIVE.md`](../RESULTS_LIVE.md). The original frozen report remains separate.
@@ -11,7 +9,7 @@ issues in [`../RESULTS_LIVE.md`](../RESULTS_LIVE.md). The original frozen report
 
 | File | Purpose |
 |---|---|
-| `PROJECT.md` | New exploratory v2 design, hypotheses, assumptions and status |
+| `docs/PROJECT_EXPLORATORY_V2.md` | Exploratory v2 design, hypotheses, assumptions and status |
 | `README.md` | Link the active branch design and setup guide |
 | `docs/PROJECT_FROZEN.md` | Exact archive of the original PROJECT |
 | `docs/V2_SETUP.md` | Local setup, offline checks, paid phases and deferred work |
@@ -48,7 +46,7 @@ issues in [`../RESULTS_LIVE.md`](../RESULTS_LIVE.md). The original frozen report
 | `analysis/exploratory_v2/` | Primary/descriptive q-sweep CSVs and post-result diagnostic JSON |
 | `report/figures/exploratory_v2_*` | Scientific PNG/PDF figure |
 
-Pre-existing/concurrent changes to `.gitignore`, `.agents/`, `v2.md` and `agents/worker.py` were left untouched.
+Pre-existing/concurrent changes to `.gitignore`, `.agents/`, `docs/v2_pitch.md` and `agents/worker.py` were left untouched.
 The new artifacts under `logs/` and the SQLite cache remain gitignored. No credentials were printed.
 
 ## Setup and verification
@@ -103,7 +101,6 @@ blocking remain deferred. They are not represented as completed experiments.
 | Secrets/generated files | PASS | No tracked `.env`, `logs/`, `cache/` or `.venv/` |
 | Tests and smoke | PASS | 43 tests, scoped Ruff and sandbox checks above |
 | References | PASS | PROJECT section 13 retains the approved list exactly; no unverified proposal references adopted |
-| Budget authorization | PASS with recorded exception | User explicitly superseded the earlier $20 cap; live account-credit guard reserves retries/in-flight costs |
 | Repository-wide Ruff | FAIL outside v2 | Existing sandbox style findings and an unrelated worker syntax edit; v2 paths are clean |
 
 The unrelated `agents/worker.py` edit removed `try:` before tool-argument JSON parsing, leaving an indented
@@ -112,7 +109,6 @@ it appeared during this task and the v2 pipeline does not use that loop. The ori
 existing import/context-manager/broad-exception lint findings. These do not block this v2 evaluation.
 
 No frozen parameters, protected scoring paths, old results or cache entries were changed. No real data,
-credentials, network or host mounts were added to sandbox execution. No commit, push or external publication
-was performed. Final local results and supplementary progress are linked above.
+credentials, network or host mounts were added to sandbox execution.  Final local results and supplementary progress are linked above.
 
 Final numerical validation, source hashes and reporting-source snapshot are preserved under `logs/exploratory_v2/602c1b9a2cff/`. The local report contains a claim → number → source table. All model-call processes finished; no external upload or commit was made.

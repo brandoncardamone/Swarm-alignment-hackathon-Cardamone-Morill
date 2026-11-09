@@ -14,7 +14,7 @@ Protocol: [docs/V21_PROTOCOL.md](docs/V21_PROTOCOL.md). Original completed v2: [
 - Scored evaluation cases: **432/432**.
 - Latest scoring checkpoint: Attack-piece evaluation.
 
-Last verified total account usage: **$8.0714**; remaining **$21.9286** of $30.00 credits. This includes earlier work. User authorized remaining credits; a live retry/in-flight reserve guard was used. No credit purchases are made.
+Last verified total account usage: **$8.0714**; remaining **$21.9286** of $30.00 credits. This includes earlier work.
 
 Generated-input hashes: **unchanged**.
 
@@ -111,7 +111,7 @@ Held-out benign-reference rates at nominal 2%:
 
 Post-collection exploratory calibration issue: 144/144 private first-piece scores are identical for singleton/provenance/exact control, with current-request-only contexts, yet flags are 60/135/135 because their size-bin thresholds differ. The additional first-piece flags arise from threshold allocation, not extra context. Fixed primary policies remain unchanged; source is exploratory_first_piece_calibration_diagnostic.json.
 
-Completed results are saved locally to [report/exploratory_v21.md](report/exploratory_v21.md). No external upload, commit or push is requested.
+Completed results are saved locally to [report/exploratory_v21.md](report/exploratory_v21.md).
 
 ## Post-hoc exploratory common-threshold analysis
 

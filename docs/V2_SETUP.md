@@ -1,6 +1,6 @@
 # Exploratory v2 setup and execution
 
-This is a separate experiment based on `v2.md`. Its candidate config is
+This is a separate experiment based on `docs/v2_pitch.md`. Its candidate config is
 `configs/exploratory_v2.yaml`; never edit `configs/frozen.yaml` to run it.
 
 ## Local prerequisites
@@ -25,8 +25,7 @@ If `.env` does not exist, copy `.env.example` to `.env` locally, then set `OPENR
 editor. Do not paste credentials into chat or the terminal command history. The configured roles all
 use OpenRouter; no separate DeepSeek, Groq or Google key is currently needed. Preflight prints only
 whether a key is present. The worker and judge passed budgeted compatibility probes; the optional
-embedder endpoint remains unverified. The latest user authorization permits all available account
-credits, superseding the earlier $20 cap for this exploratory run.
+embedder endpoint remains unverified.
 
 The agent environment may use `uv --cache-dir /private/tmp/swarm-v2-uv-cache run --offline --no-sync ...`
 after syncing dependencies, because the normal user cache is outside its writable sandbox. Normal
@@ -115,8 +114,7 @@ produce the local Markdown, PNG/PDF figure and descriptive CSVs; they do not pub
 The initial CLI incorrectly required a positive H0 CI on the tiny dev sample. The full runner corrects
 this before evaluation scoring: dev fixes the wording, full-sample H0 gates H1. It preserves the original
 pilot and records immutable source/input hashes in an execution amendment. A budget guard includes
-retry/in-flight reserves and reconciles usage against available account credits, following the user's
-explicit authorization to supersede the earlier $20 cap.
+retry/in-flight reserves and reconciles usage against available account credits.
 Use `--wait-for-replay` to overlap calibration scoring with the remaining isolated replay; case scoring
 still requires all selected-arm cases. `RESULTS_LIVE.md` records this design correction explicitly.
 

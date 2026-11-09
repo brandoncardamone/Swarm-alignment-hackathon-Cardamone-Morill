@@ -1,6 +1,6 @@
 # Glossary: "Who Draws the Map?"
 
-Every term used in this project, grouped by topic. Cross-references are in *italics*. See `PROJECT.md` for the full
+Every term used in this project, grouped by topic. Cross-references are in *italics*. See `docs/PROJECT_FROZEN.md` for the full
 design.
 
 ---
@@ -170,7 +170,7 @@ Map parameters:
 | **Dry run** | A tiny test run of the full pipeline. |
 | **Cut order** | v1's planned order of dropping scope if behind. |
 | **Stretch goal** | Optional extra if time allows (taint rule, A3, stronger judge, rarity-weighted provenance). |
-| **C1–C20** | Numbered changes from v1, listed in `PROJECT.md` §8. |
+| **C1–C20** | Numbered changes from v1, listed in `docs/PROJECT_FROZEN.md` §8. |
 
 ## 10. Environment and tools
 
@@ -201,7 +201,6 @@ Map parameters:
 | **Voyage-4-lite** | Embedding model for clustering (Brown et al. also use Voyage). |
 | **OpenRouter** | One API giving access to all the models above; our single paid key. |
 | **Groq / DeepSeek API / Gemini** | Other providers in `.env`, unused (invalid key / no balance / free-tier rate limit). |
-| **Adaption credits** | The hackathon's $500 credit, usable only on the Adaption platform, not for our inference. |
 | **WSL2** | Windows Subsystem for Linux, where all work runs. |
 | **Docker / Docker Desktop** | Container runtime for the sandbox runner. |
 | **uv** | Python package and environment manager; `uv.lock` pins every dependency. |
@@ -215,15 +214,16 @@ Map parameters:
 | File | What it is |
 |---|---|
 | `docs/v1.pdf` | Original pitch brief. |
-| `PROJECT.md` | Current full brief (v2). |
-| `PLAN.md` | Build plan and change log. |
-| `RESULTS_LIVE.md` | Live progress and interim results, refreshed every 2 minutes. |
+| `docs/PROJECT_FROZEN.md` | Full brief for the pre-registered frozen run. |
+| `results/summary_preregistered.md` | Pre-registered frozen-run results. |
+| `docs/RESULTS_FROZEN_FINAL.md` | Frozen-run progress tracker, final state. |
+| `report/exploratory_v2.md`, `report/exploratory_v21.md` | Exploratory v2 and v2.1 results. |
+| `RESULTS_LIVE.md` | Exploratory v2.1 progress tracker, final state. |
 | `GLOSSARY.md` | This file. |
 | `configs/frozen.yaml` | The pre-registered protocol. |
 | `configs/models.yaml` | Which model plays which role. |
 | `tasks/attacks/ATTACK_TEMPLATES_proxy_goals.py` | Scripted attack templates (clearly labelled). |
 | `tasks/benign/templates.py` | Benign look-alike templates. |
-| `report/draft.md` | Report draft in the Apart template's structure. |
 | `docs/apart_report_template.txt` | Text of the official template. |
 | `logs/` | Run data (gitignored): events, hidden labels, episodes, results. |
 

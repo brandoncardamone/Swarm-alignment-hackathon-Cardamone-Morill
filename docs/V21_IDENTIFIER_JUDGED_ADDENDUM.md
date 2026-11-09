@@ -20,7 +20,5 @@ CI overlap. Judge-free linkage and judged safety remain separate claims.
 
 Queue model calls until primary collection/analysis completes. Reuse the SQLite cache and one response
 for identical judge inputs. No new Docker execution, U generation, keys or local setup is required.
-Announced extra estimate: $0.50–$1.50 and 20–40 minutes, using remaining authorized credits with the
-same live account guard. Preserve source/input hashes and outputs in a separate supplement directory.
-Append results to the local v2.1 Markdown only after the primary report exists. No external publication,
-credit purchase, commit or push is performed.
+Preserve source/input hashes and outputs in a separate supplement directory.
+Append results to the local v2.1 Markdown only after the primary report exists.

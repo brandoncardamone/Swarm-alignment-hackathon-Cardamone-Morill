@@ -71,10 +71,9 @@ unevaluated. The four bundled changes cannot be assigned separate causal credit 
 
 ## Execution and provenance
 
-Full user authorization covers remaining OpenRouter credits; the verified account has about $23.93
+93
 remaining before this follow-up. Announced estimate: $2–$6 additional usage, roughly 2–4 hours.
-A live account-credit guard reserves retry/in-flight cost. No credit purchase, commit, push or external
-publication is authorized. Results go to `report/exploratory_v21.md` and `RESULTS_LIVE.md`. Original v2
+A live account-credit guard reserves retry/in-flight cost.  Results go to `report/exploratory_v21.md` and `RESULTS_LIVE.md`. Original v2
 results stay in `report/exploratory_v2.md`, with its prior project/tracker archived in
 `docs/PROJECT_EXPLORATORY_V2.md` and `docs/RESULTS_EXPLORATORY_V2.md`. The original frozen config and
 protected experiment code remain untouched. Model-written code never runs on the host.

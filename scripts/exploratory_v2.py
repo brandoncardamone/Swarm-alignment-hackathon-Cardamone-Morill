@@ -48,7 +48,7 @@ def preflight(config: dict) -> bool:
     ready = True
     for image in ("swarm-runner:0.1", config["runner_image"]):
         result = subprocess.run(["docker", "image", "inspect", image], capture_output=True, check=False)
-        print(f"{image}: {'ready' if result.returncode == 0 else 'MISSING; see PROJECT.md setup commands'}")
+        print(f"{image}: {'ready' if result.returncode == 0 else 'MISSING; see docs/V2_SETUP.md'}")
         ready &= result.returncode == 0
     return ready
 
