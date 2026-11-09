@@ -137,7 +137,7 @@ def main():
             text += " " + lines[i].strip()
             i += 1
         p = doc.add_paragraph()
-        centered = text.startswith("**") and ("Independent" in text or "Morill" in text or "Apart" in text) or \
+        centered = text.startswith("**") and ("Independent" in text or "Morrill" in text or "Apart" in text) or \
             text in ("With",) or text.startswith("*Research conducted")
         if centered:
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER

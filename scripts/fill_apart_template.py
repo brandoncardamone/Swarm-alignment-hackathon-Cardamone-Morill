@@ -99,7 +99,7 @@ def main(template, out):
     acell = head.rows[1].cells[0]
     outer = acell.tables[0]  # 1x3 (merged) holding "With Apart Research" + author grid
     grid = outer.rows[0].cells[0].tables[0]
-    authors = [("Brandon Cardamone", "Independent researcher"), ("Will Morrill", "[Affiliation]")]
+    authors = [("Brandon Cardamone", "Independent researcher"), ("William Morrill", "[Affiliation]")]
     cells = [grid.rows[r].cells[c] for r in range(2) for c in range(3)]
     for k, cell in enumerate(cells):
         if k < len(authors):

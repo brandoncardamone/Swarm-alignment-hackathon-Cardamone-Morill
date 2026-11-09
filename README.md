@@ -1,7 +1,7 @@
 # Who Draws the Map? Harness-side grouping for joint review of split swarm attacks
 
 Apart Research **Swarm Alignment Hackathon** (Nov 6–8, 2026), Track 4: Multi-Agent Oversight and Control.
-Team: Brandon Cardamone, Will Morrill.
+Team: Brandon Cardamone, William Morrill.
 
 **All code in this repository was written during the sprint (Nov 7–9, 2026). There is no pre-existing code.**
 
