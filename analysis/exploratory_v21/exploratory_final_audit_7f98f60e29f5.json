@@ -1,0 +1,19 @@
+{
+  "analysis": "exploratory_v21",
+  "checked_utc": "2026-11-08T17:58:19.745985+00:00",
+  "frozen_config_and_scoring_paths_unchanged": true,
+  "collection_and_supplement_source_hashes_unchanged": true,
+  "generated_input_hashes_unchanged": true,
+  "no_tracked_secrets_logs_cache_venv": true,
+  "credential_pattern_scan_filenames": [],
+  "runner_images_match_prelaunch": [
+    "swarm-runner-v2:0.1 sha256:059436a75cb1c64903adfd680a725d0a7b8725e79922076d2cb74c9f5c78d3a6",
+    "swarm-runner:0.1 sha256:b2e07bb6b3d6429e36ec7707f692d39ba447ace1da38f0c0ce29f830ebe1c386"
+  ],
+  "docker_inspection_note": "Known local tag-inspection false-missing-image quirk reproduced; tag listing and full-ID inspection match prelaunch. Existing preflight already uses full-ID inspection; see docs/V2_SETUP.md. No rebuild or setup needed.",
+  "unit_tests": "62 passed",
+  "scoped_ruff": "passed",
+  "repository_ruff": "15 pre-existing sandbox style / unrelated worker syntax findings",
+  "git_diff_check": "passed",
+  "no_commit_or_push": true
+}

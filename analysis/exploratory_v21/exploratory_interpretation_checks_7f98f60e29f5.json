@@ -1,0 +1,13 @@
+{
+  "analysis": "exploratory_v21",
+  "post_collection_descriptive": true,
+  "policy": "size_bin",
+  "private_cases": 144,
+  "private_provenance_first_piece_flags": 135,
+  "private_caught": {
+    "provenance": 141,
+    "size_root_matched": 137
+  },
+  "provenance_complete_streams": 432,
+  "completed_streams": 432
+}

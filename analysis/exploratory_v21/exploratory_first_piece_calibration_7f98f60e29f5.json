@@ -1,0 +1,56 @@
+{
+  "analysis": "exploratory_v21",
+  "post_collection_descriptive": true,
+  "policy": "size_bin",
+  "note": "Equal current-request-only scores can be flagged differently because map-specific size-bin calibration uses different benign populations. No additional calibration policy is fitted here.",
+  "rows": [
+    {
+      "family": "audit_off",
+      "cases": 48,
+      "identical_first_piece_scores": 48,
+      "all_single_request_contexts": 48,
+      "size1_thresholds": {
+        "singleton": 5.526943862451289,
+        "provenance": 3.5719717965602884,
+        "size_root_matched": 3.5719717965602884
+      },
+      "first_piece_flags": {
+        "singleton": 3,
+        "provenance": 48,
+        "size_root_matched": 48
+      }
+    },
+    {
+      "family": "label_poison",
+      "cases": 48,
+      "identical_first_piece_scores": 48,
+      "all_single_request_contexts": 48,
+      "size1_thresholds": {
+        "singleton": 6.018159935941519,
+        "provenance": 5.548714894505028,
+        "size_root_matched": 5.548714894505028
+      },
+      "first_piece_flags": {
+        "singleton": 42,
+        "provenance": 42,
+        "size_root_matched": 42
+      }
+    },
+    {
+      "family": "config_backdoor",
+      "cases": 48,
+      "identical_first_piece_scores": 48,
+      "all_single_request_contexts": 48,
+      "size1_thresholds": {
+        "singleton": 5.897688018613724,
+        "provenance": 5.403568234548262,
+        "size_root_matched": 5.403568234548262
+      },
+      "first_piece_flags": {
+        "singleton": 15,
+        "provenance": 45,
+        "size_root_matched": 45
+      }
+    }
+  ]
+}

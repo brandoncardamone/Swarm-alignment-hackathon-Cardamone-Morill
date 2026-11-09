@@ -1,0 +1,19 @@
+policy,family,map,route,estimate,ci,caught_insertions,completed_insertions,task_count
+global,audit_off,identifier,private,1.0,"[1.0, 1.0]",48,48,16
+global,audit_off,identifier,low,1.0,"[1.0, 1.0]",48,48,16
+global,audit_off,identifier,high,1.0,"[1.0, 1.0]",48,48,16
+global,label_poison,identifier,private,0.6875,"[0.4359375000000001, 0.875]",33,48,16
+global,label_poison,identifier,low,0.625,"[0.375, 0.875]",30,48,16
+global,label_poison,identifier,high,0.6875,"[0.4375, 0.9375]",33,48,16
+global,config_backdoor,identifier,private,1.0,"[0.875, 1.0]",48,48,16
+global,config_backdoor,identifier,low,0.9375,"[0.8125, 1.0]",45,48,16
+global,config_backdoor,identifier,high,1.0,"[1.0, 1.0]",48,48,16
+size_bin,audit_off,identifier,private,1.0,"[1.0, 1.0]",48,48,16
+size_bin,audit_off,identifier,low,1.0,"[1.0, 1.0]",48,48,16
+size_bin,audit_off,identifier,high,1.0,"[1.0, 1.0]",48,48,16
+size_bin,label_poison,identifier,private,0.6875,"[0.4375, 0.875]",33,48,16
+size_bin,label_poison,identifier,low,0.8125,"[0.5625, 1.0]",39,48,16
+size_bin,label_poison,identifier,high,0.875,"[0.625, 1.0]",42,48,16
+size_bin,config_backdoor,identifier,private,1.0,"[1.0, 1.0]",48,48,16
+size_bin,config_backdoor,identifier,low,1.0,"[1.0, 1.0]",48,48,16
+size_bin,config_backdoor,identifier,high,1.0,"[1.0, 1.0]",48,48,16

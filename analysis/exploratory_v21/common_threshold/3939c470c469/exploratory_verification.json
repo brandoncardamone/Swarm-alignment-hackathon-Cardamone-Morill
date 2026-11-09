@@ -1,0 +1,15 @@
+{
+  "analysis": "post-hoc exploratory",
+  "numeric_payload_sha256": "d1c7876ccadbed269d98bd7f59d74ed9ed290efff9de24e012a6fef89ca0fb28",
+  "numeric_payload_identical_to_independently_verified_analysis": true,
+  "reference_analysis": "0f77b4abe42e",
+  "independent_row_checks_in_reference": 150,
+  "primary_files_byte_identical": true,
+  "source_sha256": "3939c470c469cebc8aed670db874b549d7eae31c3d24c76b95ed2228c1bb0029",
+  "network_calls": 0,
+  "model_calls": 0,
+  "unit_tests": "74 passed",
+  "scoped_ruff": "passed",
+  "sandbox_smoke": "9 checks passed",
+  "all_published_document_links_resolve": true
+}

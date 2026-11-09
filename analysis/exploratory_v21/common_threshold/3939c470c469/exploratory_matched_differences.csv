@@ -1,0 +1,19 @@
+analysis,family,cost,scope,estimate,low,high
+post-hoc exploratory,audit_off,0.01,all_pieces,1.0,1.0,1.0
+post-hoc exploratory,audit_off,0.01,later_only,1.0,1.0,1.0
+post-hoc exploratory,audit_off,0.02,all_pieces,1.0,0.9583333333333334,1.0
+post-hoc exploratory,audit_off,0.02,later_only,1.0,0.9583333333333334,1.0
+post-hoc exploratory,audit_off,0.05,all_pieces,0.9791666666666666,0.9375,1.0
+post-hoc exploratory,audit_off,0.05,later_only,0.9791666666666666,0.9375,1.0
+post-hoc exploratory,label_poison,0.01,all_pieces,-0.3958333333333333,-0.7083333333333334,-0.1875
+post-hoc exploratory,label_poison,0.01,later_only,-0.020833333333333332,-0.0625,0.0
+post-hoc exploratory,label_poison,0.02,all_pieces,-0.5833333333333334,-0.8125,-0.3125
+post-hoc exploratory,label_poison,0.02,later_only,-0.020833333333333332,-0.0625,0.0
+post-hoc exploratory,label_poison,0.05,all_pieces,-0.20833333333333337,-0.625,-0.04166666666666663
+post-hoc exploratory,label_poison,0.05,later_only,0.4166666666666667,0.0625,0.6671874999999973
+post-hoc exploratory,config_backdoor,0.01,all_pieces,1.0,1.0,1.0
+post-hoc exploratory,config_backdoor,0.01,later_only,1.0,1.0,1.0
+post-hoc exploratory,config_backdoor,0.02,all_pieces,1.0,1.0,1.0
+post-hoc exploratory,config_backdoor,0.02,later_only,1.0,1.0,1.0
+post-hoc exploratory,config_backdoor,0.05,all_pieces,1.0,0.875,1.0
+post-hoc exploratory,config_backdoor,0.05,later_only,1.0,0.9583333333333334,1.0
